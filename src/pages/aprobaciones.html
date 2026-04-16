@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprobaciones - SGSPCSI</title>
+    <link rel="stylesheet" href="../styles/home_pm.css">
+    <style>
+        .approval-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .approval-card:hover {
+            box-shadow: 0 6px 20px var(--shadow-lg);
+        }
+
+        .approval-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-bg);
+        }
+
+        .approval-id {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .approval-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 5px 0;
+        }
+
+        .approval-type {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .type-nuevo {
+            background: rgba(105, 179, 231, 0.1);
+            color: #69B3E7;
+        }
+
+        .type-modificacion {
+            background: rgba(255, 149, 0, 0.1);
+            color: #FF9500;
+        }
+
+        .type-falla {
+            background: rgba(255, 59, 48, 0.1);
+            color: #FF3B30;
+        }
+
+        .type-requerimientos {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34C759;
+        }
+
+        .priority-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .priority-alta {
+            background: rgba(255, 59, 48, 0.1);
+            color: #FF3B30;
+        }
+
+        .priority-media {
+            background: rgba(255, 149, 0, 0.1);
+            color: #FF9500;
+        }
+
+        .priority-baja {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34C759;
+        }
+
+        .approval-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .approval-description {
+            background: var(--light-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .approval-description h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .approval-description p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .approval-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-approve {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-approve:hover {
+            background: #2DA74C;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 199, 89, 0.3);
+        }
+
+        .btn-reject {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: #E62E24;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3);
+        }
+
+        .btn-request-info {
+            background: var(--warning);
+            color: white;
+        }
+
+        .btn-request-info:hover {
+            background: #E68500;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
+        }
+
+        .btn-view {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-view:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-action svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .filters-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 25px;
+            box-shadow: 0 2px 10px var(--shadow);
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-primary);
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .empty-approvals {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .empty-approvals svg {
+            width: 80px;
+            height: 80px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .empty-approvals h3 {
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .empty-approvals p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--light-bg);
+            color: var(--primary);
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .btn-cancel {
+            background: var(--light-bg);
+            color: var(--text-primary);
+        }
+
+        .btn-cancel:hover {
+            background: var(--border);
+        }
+
+        .details-modal-content {
+            max-width: 1020px;
+            width: 94%;
+            max-height: 90vh;
+            overflow: auto;
+            padding: 24px;
+        }
+
+        .details-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .summary-item {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .summary-item .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .summary-item .value {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .details-section {
+            background: #f9fbfd;
+            border: 1px solid #e6edf5;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .details-section h4 {
+            margin: 0 0 10px;
+            font-size: 15px;
+            color: var(--primary);
+        }
+
+        .details-description {
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+        }
+
+        .detail-field {
+            background: white;
+            border: 1px solid #e6edf5;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .detail-field .field-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-bottom: 4px;
+        }
+
+        .detail-field .field-value {
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-answers-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .form-answer-item {
+            background: white;
+            border: 1px solid #d6e1ee;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .form-answer-item .question {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .form-answer-item .answer {
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .media-card {
+            background: white;
+            border: 1px solid #dfe7f2;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .media-card img {
+            display: block;
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background: #eef3f9;
+        }
+
+        .media-card .media-caption {
+            padding: 10px;
+            font-size: 13px;
+            color: var(--text-primary);
+        }
+
+        .document-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border: 1px solid #dfe7f2;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .document-name {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .document-action {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .details-modal-content {
+                width: 96%;
+                padding: 16px;
+            }
+
+            .form-answer-item .answer {
+                font-size: 13px;
+            }
+        }
+    </style>
+    <script type="module" src="speed-insights.js"></script>
+</head>
+<body>
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menú</h3>
+            <button class="sidebar-close" id="sidebarClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home_pm.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Inicio</span>
+            </a>
+            <a href="dashboard_pm.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <span>Dashboard Ejecutivo</span>
+            </a>
+            <a href="aprobaciones.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Aprobaciones</span>
+                <span class="badge">6</span>
+            </a>
+            <a href="equipo.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Gestión de Equipo</span>
+            </a>
+        </nav>
+    </aside>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <img src="../../assets/images/logo_ISSEG.jpeg" alt="ISSEG" class="header-logo">
+                <div class="header-info">
+                    <h1 class="system-title">SGSPCSI</h1>
+                    <p class="system-subtitle">Gestión de Aprobaciones</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="notifications-btn" id="notificationsBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge" id="notificationBadge">6</span>
+                </button>
+                <div class="user-profile-dropdown">
+                    <button class="user-profile-btn" id="userProfileBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <div class="user-details">
+                            <span class="user-name" id="userName">Product Manager</span>
+                            <span class="user-role">Gestión de Proyectos</span>
+                        </div>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <a href="perfil_pm.html" class="dropdown-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Editar perfil</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout-item" id="btnLogout">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16 17 21 12 16 7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
+                            <span>Cerrar Sesión</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notifications Panel -->
+        <div class="notifications-panel" id="notificationsPanel">
+            <div class="notifications-header">
+                <h3>Notificaciones</h3>
+                <button class="mark-all-read" id="markAllRead">Marcar todas como leídas</button>
+            </div>
+            <div class="notifications-list" id="notificationsList"></div>
+            <div class="notifications-footer">
+                <a href="notificaciones.html">Ver todas las notificaciones</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h2 class="welcome-title">Gestión de Aprobaciones</h2>
+            <p class="welcome-text">Revisa y aprueba las solicitudes pendientes</p>
+        </section>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="filter-item">
+                <label class="filter-label">Tipo de Solicitud</label>
+                <select class="filter-select" id="filterType">
+                    <option value="all">Todos los tipos</option>
+                    <option value="nuevo_sistema">Nuevo Sistema</option>
+                    <option value="modificacion">Modificación</option>
+                    <option value="requerimientos">Requerimientos Técnicos</option>
+                    <option value="falla_urgente">Falla Urgente</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label class="filter-label">Prioridad</label>
+                <select class="filter-select" id="filterPriority">
+                    <option value="all">Todas las prioridades</option>
+                    <option value="alta">Alta</option>
+                    <option value="media">Media</option>
+                    <option value="baja">Baja</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label class="filter-label">Área</label>
+                <select class="filter-select" id="filterArea">
+                    <option value="all">Todas las áreas</option>
+                    <option value="contabilidad">Contabilidad</option>
+                    <option value="nomina">Nómina</option>
+                    <option value="recursos_humanos">Recursos Humanos</option>
+                    <option value="ti">TI</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Approvals List -->
+        <div id="approvalsList">
+            <!-- Solicitud 1 -->
+            <div class="approval-card" data-id="REQ-2024-091">
+                <div class="approval-header">
+                    <div>
+                        <div class="approval-id">REQ-2024-091</div>
+                        <div class="approval-title">Sistema de Reportes Ejecutivos</div>
+                        <span class="approval-type type-nuevo">Nuevo Sistema</span>
+                    </div>
+                    <span class="priority-badge priority-alta">Alta</span>
+                </div>
+                <div class="approval-info">
+                    <div class="info-item">
+                        <div class="info-label">Solicitante</div>
+                        <div class="info-value">María González</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Área</div>
+                        <div class="info-value">Contabilidad</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Fecha</div>
+                        <div class="info-value">05/Mar/2026</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Tiempo Esperando</div>
+                        <div class="info-value">2 días</div>
+                    </div>
+                </div>
+                <div class="approval-description">
+                    <h4>Descripción</h4>
+                    <p>Se requiere un sistema de reportes ejecutivos que permita visualizar métricas financieras en tiempo real, con capacidad de generar gráficos interactivos y exportar datos a Excel/PDF.</p>
+                </div>
+                <div class="approval-actions">
+                    <button class="btn-action btn-approve" onclick="approveRequest('REQ-2024-091')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Aprobar
+                    </button>
+                    <button class="btn-action btn-reject" onclick="rejectRequest('REQ-2024-091')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        Rechazar
+                    </button>
+                    <button class="btn-action btn-request-info" onclick="requestMoreInfo('REQ-2024-091')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        Solicitar Información
+                    </button>
+                    <button class="btn-action btn-view" onclick="viewDetails('REQ-2024-091')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Ver Detalles
+                    </button>
+                </div>
+            </div>
+
+            <!-- Solicitud 2 -->
+            <div class="approval-card" data-id="MOD-2024-033">
+                <div class="approval-header">
+                    <div>
+                        <div class="approval-id">MOD-2024-033</div>
+                        <div class="approval-title">Actualización Módulo de Nómina</div>
+                        <span class="approval-type type-modificacion">Modificación</span>
+                    </div>
+                    <span class="priority-badge priority-media">Media</span>
+                </div>
+                <div class="approval-info">
+                    <div class="info-item">
+                        <div class="info-label">Solicitante</div>
+                        <div class="info-value">Carlos Ramírez</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Área</div>
+                        <div class="info-value">Recursos Humanos</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Fecha</div>
+                        <div class="info-value">06/Mar/2026</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Tiempo Esperando</div>
+                        <div class="info-value">1 día</div>
+                    </div>
+                </div>
+                <div class="approval-description">
+                    <h4>Descripción</h4>
+                    <p>Agregar funcionalidad para calcular automáticamente deducciones por impuestos y mostrar desglose detallado en recibos de nómina.</p>
+                </div>
+                <div class="approval-actions">
+                    <button class="btn-action btn-approve" onclick="approveRequest('MOD-2024-033')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Aprobar
+                    </button>
+                    <button class="btn-action btn-reject" onclick="rejectRequest('MOD-2024-033')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        Rechazar
+                    </button>
+                    <button class="btn-action btn-request-info" onclick="requestMoreInfo('MOD-2024-033')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        Solicitar Información
+                    </button>
+                    <button class="btn-action btn-view" onclick="viewDetails('MOD-2024-033')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Ver Detalles
+                    </button>
+                </div>
+            </div>
+
+            <!-- Solicitud 3 -->
+            <div class="approval-card" data-id="URG-2024-008">
+                <div class="approval-header">
+                    <div>
+                        <div class="approval-id">URG-2024-008</div>
+                        <div class="approval-title">Falla Crítica en Sistema de Acceso</div>
+                        <span class="approval-type type-falla">Falla Urgente</span>
+                    </div>
+                    <span class="priority-badge priority-alta">Alta</span>
+                </div>
+                <div class="approval-info">
+                    <div class="info-item">
+                        <div class="info-label">Solicitante</div>
+                        <div class="info-value">Ana López</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Área</div>
+                        <div class="info-value">TI</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Fecha</div>
+                        <div class="info-value">08/Mar/2026</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Tiempo Esperando</div>
+                        <div class="info-value">3 horas</div>
+                    </div>
+                </div>
+                <div class="approval-description">
+                    <h4>Descripción</h4>
+                    <p>El sistema de control de acceso no está registrando correctamente las entradas y salidas del personal. Requiere intervención inmediata.</p>
+                </div>
+                <div class="approval-actions">
+                    <button class="btn-action btn-approve" onclick="approveRequest('URG-2024-008')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Aprobar
+                    </button>
+                    <button class="btn-action btn-reject" onclick="rejectRequest('URG-2024-008')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        Rechazar
+                    </button>
+                    <button class="btn-action btn-request-info" onclick="requestMoreInfo('URG-2024-008')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        Solicitar Información
+                    </button>
+                    <button class="btn-action btn-view" onclick="viewDetails('URG-2024-008')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Ver Detalles
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2026 ISSEG - Instituto de Seguridad Social del Estado de Guanajuato</p>
+    </footer>
+
+    <!-- Modal para Aprobar -->
+    <div class="modal" id="approveModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Aprobar Solicitud</h3>
+                <button class="modal-close" onclick="closeModal('approveModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Comentarios (Opcional)</label>
+                    <textarea class="form-textarea" id="approveComments" placeholder="Agregar comentarios sobre la aprobación..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action btn-cancel" onclick="closeModal('approveModal')">Cancelar</button>
+                <button class="btn-action btn-approve" onclick="confirmApprove()">Confirmar Aprobación</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Rechazar -->
+    <div class="modal" id="rejectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Rechazar Solicitud</h3>
+                <button class="modal-close" onclick="closeModal('rejectModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Motivo del Rechazo *</label>
+                    <textarea class="form-textarea" id="rejectReason" placeholder="Explica el motivo del rechazo..." required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action btn-cancel" onclick="closeModal('rejectModal')">Cancelar</button>
+                <button class="btn-action btn-reject" onclick="confirmReject()">Confirmar Rechazo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Solicitar Información -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Solicitar Más Información</h3>
+                <button class="modal-close" onclick="closeModal('infoModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Información Requerida *</label>
+                    <textarea class="form-textarea" id="requestedInfo" placeholder="Especifica qué información adicional necesitas..." required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action btn-cancel" onclick="closeModal('infoModal')">Cancelar</button>
+                <button class="btn-action btn-request-info" onclick="confirmRequestInfo()">Enviar Solicitud</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Ver Detalles -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content details-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="detailsModalTitle">Detalle de Solicitud</h3>
+                <button class="modal-close" onclick="closeModal('detailsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="details-summary-grid" id="detailsSummary"></div>
+
+                <div class="details-section">
+                    <h4>Descripcion General</h4>
+                    <p class="details-description" id="detailsDescription"></p>
+                </div>
+
+                <div class="details-section">
+                    <h4>Respuestas del Formulario</h4>
+                    <div class="form-answers-list" id="detailsFormAnswers"></div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Informacion Enviada</h4>
+                    <div class="details-grid" id="detailsFields"></div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Imagenes y Diagramas</h4>
+                    <div class="media-grid" id="detailsMedia"></div>
+                </div>
+
+                <div class="details-section">
+                    <h4>Documentacion Adicional</h4>
+                    <div class="document-list" id="detailsDocuments"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action btn-cancel" onclick="closeModal('detailsModal')">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/home_pm.js"></script>
+    <script>
+        let currentRequestId = null;
+
+        const requestDetailsData = {
+            'REQ-2024-091': {
+                title: 'Sistema de Reportes Ejecutivos',
+                formTemplate: 'Formulario_Requerimientos.html',
+                type: 'Nuevo Sistema',
+                priority: 'Alta',
+                requester: 'Maria Gonzalez',
+                area: 'Contabilidad',
+                date: '05/Mar/2026',
+                waitTime: '2 dias',
+                description: 'Se requiere un sistema de reportes ejecutivos que permita visualizar metricas financieras en tiempo real, con capacidad de generar graficos interactivos y exportar datos a Excel/PDF.',
+                formResponses: [
+                    { question: 'Contexto actual del area', answer: 'El area consolida informacion financiera desde 4 sistemas y hojas de calculo manuales.' },
+                    { question: 'Problematica especifica', answer: 'El cierre mensual tarda entre 3 y 4 dias por validaciones manuales y diferencias entre fuentes.' },
+                    { question: 'Objetivo principal del sistema', answer: 'Centralizar indicadores y generar reportes ejecutivos con filtros por periodo, area y centro de costo.' },
+                    { question: 'Alcance funcional', answer: 'Tablero KPI, exportacion a Excel/PDF, bitacora de cambios y alertas de variacion.' },
+                    { question: 'Usuarios y roles esperados', answer: 'Direcciones, jefaturas y analistas con roles de visualizacion, validacion y administracion.' },
+                    { question: 'Criterio de exito', answer: 'Reducir en 30% el tiempo de elaboracion de reportes y eliminar duplicidad de capturas.' }
+                ],
+                fields: [
+                    { label: 'Objetivo principal', value: 'Visualizar KPI financieros por area en tiempo real.' },
+                    { label: 'Usuarios estimados', value: '95 usuarios internos y 12 directivos.' },
+                    { label: 'Integraciones', value: 'Nomina, Contabilidad, Presupuesto y RH.' },
+                    { label: 'Entregable esperado', value: 'Dashboard web, exportacion Excel y PDF, y alertas semanales.' },
+                    { label: 'Fecha objetivo', value: '30/Abr/2026' },
+                    { label: 'Impacto', value: 'Reducir 30% el tiempo de consolidacion de reportes.' }
+                ],
+                media: [
+                    { src: 'logo_ISSEG.jpeg', caption: 'Boceto visual del tablero ejecutivo' },
+                    { src: 'logo_ISSEG.jpeg', caption: 'Diagrama de flujo del proceso de reporte' }
+                ],
+                documents: [
+                    { name: 'Diagrama de flujo.mmd', href: 'Diagrama de flujo.mmd' },
+                    { name: 'roles.mmd', href: 'roles.mmd' },
+                    { name: 'README del proyecto', href: 'README.md' }
+                ]
+            },
+            'MOD-2024-033': {
+                title: 'Actualizacion Modulo de Nomina',
+                formTemplate: 'Formulario_modificacion.html',
+                type: 'Modificacion',
+                priority: 'Media',
+                requester: 'Carlos Ramirez',
+                area: 'Recursos Humanos',
+                date: '06/Mar/2026',
+                waitTime: '1 dia',
+                description: 'Agregar funcionalidad para calcular automaticamente deducciones por impuestos y mostrar desglose detallado en recibos de nomina.',
+                formResponses: [
+                    { question: 'Tipo de solicitud', answer: 'Evolutiva' },
+                    { question: 'Modulo afectado', answer: 'Nomina - calculo de deducciones e impresion de recibo.' },
+                    { question: 'Detalle del cambio', answer: 'Incorporar reglas fiscales 2026 y desglose visual por concepto de deduccion.' },
+                    { question: 'Prioridad declarada', answer: 'Media' },
+                    { question: 'Riesgos identificados', answer: 'Ajustes en formulas historicas y pruebas de regresion en timbrado.' },
+                    { question: 'Validadores de negocio', answer: 'RH, Fiscalizacion y Product Manager.' }
+                ],
+                fields: [
+                    { label: 'Tipo de cambio', value: 'Mejora funcional en calculo y visualizacion.' },
+                    { label: 'Motivo', value: 'Cumplimiento de lineamientos fiscales 2026.' },
+                    { label: 'Modulo impactado', value: 'Nomina / Recibos / Reportes RH.' },
+                    { label: 'Riesgo tecnico', value: 'Medio: requiere pruebas de regresion en timbrado.' },
+                    { label: 'Ventana de despliegue', value: 'Fin de semana con congelamiento de cambios.' },
+                    { label: 'Aprobacion solicitada a', value: 'PM, TI y area de fiscalizacion.' }
+                ],
+                media: [
+                    { src: 'logo_ISSEG.jpeg', caption: 'Comparativo de pantalla actual vs propuesta' },
+                    { src: 'logo_ISSEG.jpeg', caption: 'Diagrama de dependencias del modulo de nomina' }
+                ],
+                documents: [
+                    { name: 'Formulario de Modificacion', href: 'Formulario_modificacion.html' },
+                    { name: 'Flujo actualizado de aprobaciones', href: 'Diagrama de flujo.mmd' },
+                    { name: 'Estandares de formularios', href: 'formularios_estandar.css' }
+                ]
+            },
+            'URG-2024-008': {
+                title: 'Falla Critica en Sistema de Acceso',
+                formTemplate: 'Formulario_Urgente.html',
+                type: 'Falla Urgente',
+                priority: 'Alta',
+                requester: 'Ana Lopez',
+                area: 'TI',
+                date: '08/Mar/2026',
+                waitTime: '3 horas',
+                description: 'El sistema de control de acceso no registra correctamente entradas y salidas del personal. Requiere intervencion inmediata para evitar incidencias operativas.',
+                formResponses: [
+                    { question: 'Incidente reportado', answer: 'Falla en registro de entradas/salidas en sistema de control de acceso.' },
+                    { question: 'Impacto operativo', answer: 'Alto: afecta control de asistencia y seguridad de instalaciones.' },
+                    { question: 'Fecha y hora de inicio', answer: '08/Mar/2026 07:40' },
+                    { question: 'Acciones de contencion', answer: 'Registro manual temporal y monitoreo presencial en accesos principales.' },
+                    { question: 'Servicio requerido', answer: 'Correccion inmediata y validacion de sincronizacion con servidor central.' },
+                    { question: 'Tiempo maximo aceptable', answer: '4 horas para restablecimiento completo.' }
+                ],
+                fields: [
+                    { label: 'Severidad reportada', value: 'Critica - impacto operativo inmediato.' },
+                    { label: 'Ambiente afectado', value: 'Produccion, modulo de control de acceso.' },
+                    { label: 'Sintoma principal', value: 'Lectores no sincronizan con servicio central.' },
+                    { label: 'Fecha/hora inicio', value: '08/Mar/2026 07:40' },
+                    { label: 'Contencion aplicada', value: 'Registro manual temporal y bitacora fisica.' },
+                    { label: 'Equipo involucrado', value: 'Soporte TI, Seguridad y Operaciones.' }
+                ],
+                media: [
+                    { src: 'logo_ISSEG.jpeg', caption: 'Evidencia de la falla en terminal de acceso' },
+                    { src: 'logo_ISSEG.jpeg', caption: 'Diagrama de arquitectura del punto de control' }
+                ],
+                documents: [
+                    { name: 'Formulario Urgente', href: 'Formulario_Urgente.html' },
+                    { name: 'Matriz de escalamiento', href: 'README.md' },
+                    { name: 'Diagrama de roles operativos', href: 'roles.mmd' }
+                ]
+            }
+        };
+
+        const formQuestionsCache = {};
+
+        function normalizeText(value) {
+            return (value || '')
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/\*/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        async function extractQuestionsFromForm(formTemplate) {
+            if (!formTemplate) {
+                return [];
+            }
+
+            if (formQuestionsCache[formTemplate]) {
+                return formQuestionsCache[formTemplate];
+            }
+
+            try {
+                const response = await fetch(formTemplate, { cache: 'no-store' });
+                if (!response.ok) {
+                    formQuestionsCache[formTemplate] = [];
+                    return [];
+                }
+
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const labels = Array.from(doc.querySelectorAll('label[for]'));
+                const uniqueQuestions = [];
+                const seen = new Set();
+
+                labels.forEach(label => {
+                    const text = (label.textContent || '').replace(/\s+/g, ' ').trim();
+                    const normalized = normalizeText(text);
+                    if (!normalized || seen.has(normalized)) {
+                        return;
+                    }
+                    seen.add(normalized);
+                    uniqueQuestions.push(text.replace(/\*\s*$/, '').trim());
+                });
+
+                formQuestionsCache[formTemplate] = uniqueQuestions;
+                return uniqueQuestions;
+            } catch (error) {
+                formQuestionsCache[formTemplate] = [];
+                return [];
+            }
+        }
+
+        function renderSummary(data, requestId) {
+            const summary = document.getElementById('detailsSummary');
+            if (!summary) return;
+
+            const items = [
+                { label: 'Folio', value: requestId },
+                { label: 'Tipo', value: data.type },
+                { label: 'Prioridad', value: data.priority },
+                { label: 'Solicitante', value: data.requester },
+                { label: 'Area', value: data.area },
+                { label: 'Fecha', value: data.date },
+                { label: 'Tiempo esperando', value: data.waitTime }
+            ];
+
+            summary.innerHTML = items.map(item => `
+                <div class="summary-item">
+                    <div class="label">${item.label}</div>
+                    <div class="value">${item.value}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderFields(data) {
+            const fieldsContainer = document.getElementById('detailsFields');
+            if (!fieldsContainer) return;
+
+            fieldsContainer.innerHTML = data.fields.map(field => `
+                <div class="detail-field">
+                    <span class="field-label">${field.label}</span>
+                    <div class="field-value">${field.value}</div>
+                </div>
+            `).join('');
+        }
+
+        async function renderFormAnswers(data) {
+            const answersContainer = document.getElementById('detailsFormAnswers');
+            if (!answersContainer) return;
+
+            const answers = Array.isArray(data.formResponses) ? data.formResponses : [];
+            const knownAnswersMap = {};
+
+            answers.forEach(item => {
+                knownAnswersMap[normalizeText(item.question)] = item.answer;
+            });
+
+            const allQuestions = await extractQuestionsFromForm(data.formTemplate);
+            const mergedAnswers = allQuestions.length > 0
+                ? allQuestions.map(question => ({
+                    question,
+                    answer: knownAnswersMap[normalizeText(question)] || 'Sin respuesta capturada.'
+                }))
+                : answers;
+
+            if (mergedAnswers.length === 0) {
+                answersContainer.innerHTML = `
+                    <div class="form-answer-item">
+                        <span class="question">Sin respuestas capturadas</span>
+                        <div class="answer">No hay informacion del formulario para esta solicitud.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            answersContainer.innerHTML = mergedAnswers.map(item => `
+                <div class="form-answer-item">
+                    <span class="question">${item.question}</span>
+                    <div class="answer">${item.answer}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderMedia(data) {
+            const mediaContainer = document.getElementById('detailsMedia');
+            if (!mediaContainer) return;
+
+            mediaContainer.innerHTML = data.media.map(item => `
+                <div class="media-card">
+                    <img src="${item.src}" alt="${item.caption}">
+                    <div class="media-caption">${item.caption}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderDocuments(data) {
+            const docsContainer = document.getElementById('detailsDocuments');
+            if (!docsContainer) return;
+
+            docsContainer.innerHTML = data.documents.map(doc => `
+                <div class="document-item">
+                    <span class="document-name">${doc.name}</span>
+                    <a class="document-action" href="${doc.href}" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            `).join('');
+        }
+
+        function approveRequest(requestId) {
+            currentRequestId = requestId;
+            document.getElementById('approveModal').classList.add('active');
+        }
+
+        function rejectRequest(requestId) {
+            currentRequestId = requestId;
+            document.getElementById('rejectModal').classList.add('active');
+        }
+
+        function requestMoreInfo(requestId) {
+            currentRequestId = requestId;
+            document.getElementById('infoModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            if (modalId !== 'detailsModal') {
+                currentRequestId = null;
+            }
+        }
+
+        function confirmApprove() {
+            const comments = document.getElementById('approveComments').value;
+            alert(`Solicitud ${currentRequestId} aprobada.\nComentarios: ${comments || 'Ninguno'}`);
+            closeModal('approveModal');
+            // Aquí iría la lógica para actualizar la solicitud
+        }
+
+        function confirmReject() {
+            const reason = document.getElementById('rejectReason').value;
+            if (!reason.trim()) {
+                alert('Por favor, especifica el motivo del rechazo');
+                return;
+            }
+            alert(`Solicitud ${currentRequestId} rechazada.\nMotivo: ${reason}`);
+            closeModal('rejectModal');
+            // Aquí iría la lógica para actualizar la solicitud
+        }
+
+        function confirmRequestInfo() {
+            const info = document.getElementById('requestedInfo').value;
+            if (!info.trim()) {
+                alert('Por favor, especifica qué información necesitas');
+                return;
+            }
+            alert(`Solicitud de información enviada para ${currentRequestId}.\nInformación requerida: ${info}`);
+            closeModal('infoModal');
+            // Aquí iría la lógica para enviar la solicitud
+        }
+
+        async function viewDetails(requestId) {
+            const details = requestDetailsData[requestId];
+            if (!details) {
+                alert(`No se encontro informacion de detalle para ${requestId}`);
+                return;
+            }
+
+            const title = document.getElementById('detailsModalTitle');
+            const description = document.getElementById('detailsDescription');
+
+            if (title) {
+                title.textContent = `${requestId} - ${details.title}`;
+            }
+
+            if (description) {
+                description.textContent = details.description;
+            }
+
+            const answersContainer = document.getElementById('detailsFormAnswers');
+            if (answersContainer) {
+                answersContainer.innerHTML = `
+                    <div class="form-answer-item">
+                        <span class="question">Cargando formulario completo</span>
+                        <div class="answer">Obteniendo todas las preguntas registradas...</div>
+                    </div>
+                `;
+            }
+
+            renderSummary(details, requestId);
+            await renderFormAnswers(details);
+            renderFields(details);
+            renderMedia(details);
+            renderDocuments(details);
+
+            document.getElementById('detailsModal').classList.add('active');
+        }
+
+        // Cerrar modal al hacer click fuera
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

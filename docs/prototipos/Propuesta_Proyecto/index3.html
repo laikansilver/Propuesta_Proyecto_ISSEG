@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGS - Sistema de Gestión de Solicitudes | ISSEG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo-container">
+                <img src="logo_ISSEG.jpeg" alt="Logo ISSEG" class="logo-isseg-img">
+            </div>
+            <h1 class="hero-title">Sistema de Gestión de Solicitudes</h1>
+            <p class="hero-subtitle">Transformando la administración de proyectos tecnológicos en el ISSEG</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Digital</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Procesos Optimizados</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">Meses de Desarrollo</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-decoration"></div>
+    </section>
+
+    <!-- PROBLEMA Y SOLUCIÓN -->
+    <section class="problem-solution">
+        <div class="container">
+            <div class="ps-grid">
+                <div class="problem-card">
+                    <div class="card-icon problem-icon">⚠️</div>
+                    <h3>Situación Actual</h3>
+                    <ul class="ps-list">
+                        <li>❌ Procesos burocráticos en papel</li>
+                        <li>❌ Pérdida de documentación</li>
+                        <li>❌ Tiempos de respuesta prolongados</li>
+                        <li>❌ Sin trazabilidad de solicitudes</li>
+                        <li>❌ Dificultad para justificar carga de trabajo</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="card-icon solution-icon">✨</div>
+                    <h3>Solución Propuesta</h3>
+                    <ul class="ps-list">
+                        <li>✅ Gestión 100% digital</li>
+                        <li>✅ Repositorio centralizado de documentos</li>
+                        <li>✅ Atención inmediata de urgencias</li>
+                        <li>✅ Bitácora completa de esfuerzo</li>
+                        <li>✅ Métricas y reportes automáticos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAGRAMA DE FLUJO -->
+    <section class="workflow-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Arquitectura del Sistema</span>
+                <h2>Flujo de Trabajo Integrado</h2>
+                <p class="section-description">Proceso completo desde la solicitud hasta la entrega, con manejo prioritario de urgencias</p>
+            </div>
+            
+            <div class="workflow-container">
+                <div class="workflow-info">
+                    <div class="info-card">
+                        <div class="info-icon">🚨</div>
+                        <h4>Manejo de Urgencias</h4>
+                        <p>Sistema de interrupción controlada que permite pausar proyectos en curso para atender fallas críticas</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📊</div>
+                        <h4>Doble Vía</h4>
+                        <p>Flujo normal para nuevos sistemas y modificaciones + vía express para reportes urgentes</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🔄</div>
+                        <h4>Trazabilidad Total</h4>
+                        <p>Cada solicitud genera folio único y bitácora de esfuerzo automática</p>
+                    </div>
+                </div>
+                
+                <div class="diagram-preview">
+                    <a href="Diagrama de flujo.png" class="diagram-link" target="_blank">
+                        <div class="diagram-placeholder">
+                            <svg width="100%" height="300" viewBox="0 0 800 300">
+                                <!-- Simplified workflow representation -->
+                                <defs>
+                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" style="stop-color:#004B87;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#34C759;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                
+                                <!-- Main flow -->
+                                <rect x="50" y="130" width="120" height="40" rx="5" fill="#004B87"/>
+                                <text x="110" y="155" fill="white" text-anchor="middle" font-size="14" font-weight="600">Solicitud</text>
+                                
+                                <line x1="170" y1="150" x2="230" y2="150" stroke="#004B87" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                
+                                <rect x="230" y="130" width="120" height="40" rx="5" fill="#004B87"/>
+                                <text x="290" y="155" fill="white" text-anchor="middle" font-size="14" font-weight="600">Evaluación</text>
+                                
+                                <line x1="350" y1="150" x2="410" y2="150" stroke="#004B87" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                
+                                <rect x="410" y="130" width="120" height="40" rx="5" fill="#004B87"/>
+                                <text x="470" y="155" fill="white" text-anchor="middle" font-size="14" font-weight="600">Desarrollo</text>
+                                
+                                <line x1="530" y1="150" x2="590" y2="150" stroke="#004B87" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                
+                                <rect x="590" y="130" width="120" height="40" rx="5" fill="#34C759"/>
+                                <text x="650" y="155" fill="white" text-anchor="middle" font-size="14" font-weight="600">Entrega</text>
+                                
+                                <!-- Urgency path -->
+                                <rect x="50" y="50" width="140" height="40" rx="5" fill="#FF3B30"/>
+                                <text x="120" y="75" fill="white" text-anchor="middle" font-size="14" font-weight="600">⚡ Urgencia</text>
+                                
+                                <line x1="190" y1="70" x2="410" y2="70" stroke="#FF3B30" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-red)"/>
+                                <line x1="410" y1="70" x2="410" y2="130" stroke="#FF3B30" stroke-width="2" marker-end="url(#arrowhead-red)"/>
+                                
+                                <!-- Arrow markers -->
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#004B87"/>
+                                    </marker>
+                                    <marker id="arrowhead-red" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#FF3B30"/>
+                                    </marker>
+                                </defs>
+                                
+                                <!-- Labels -->
+                                <text x="400" y="25" fill="#666" text-anchor="middle" font-size="12">Ruta Express (Sin evaluación de viabilidad)</text>
+                                <text x="400" y="210" fill="#666" text-anchor="middle" font-size="12">Flujo Normal (Con evaluación completa)</text>
+                            </svg>
+                            <div class="diagram-overlay">
+                                <span class="view-full">👁️ Ver Diagrama Completo</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULARIOS -->
+    <section class="forms-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Propuestas de Captura</span>
+                <h2>Formularios del Sistema</h2>
+                <p class="section-description">Interfaces diseñadas para capturar toda la información necesaria sin ambigüedades</p>
+            </div>
+
+            <div class="forms-grid">
+                <!-- Urgencias -->
+                <div class="form-card urgente-card">
+                    <div class="form-badge urgente-badge">🚨 Urgente</div>
+                    <div class="form-icon">⚡</div>
+                    <h3>Reporte de Urgencia</h3>
+                    <p class="form-description">Atención inmediata a fallas críticas que impactan operaciones del ISSEG</p>
+                    <ul class="form-features">
+                        <li>✓ Clasificación de impacto visual</li>
+                        <li>✓ Contacto directo del reportante</li>
+                        <li>✓ Evidencia fotográfica</li>
+                        <li>✓ Usuarios afectados</li>
+                    </ul>
+                    <a href="Formulario_Urgente.html" class="btn-view urgente-btn" target="_blank">
+                        <span>Ver Formulario</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Viabilidad -->
+                <div class="form-card">
+                    <div class="form-badge">📊 Evaluación</div>
+                    <div class="form-icon">🔍</div>
+                    <h3>Viabilidad de Nuevo Sistema</h3>
+                    <p class="form-description">Evaluación técnica y administrativa de propuestas de nuevos desarrollos</p>
+                    <ul class="form-features">
+                        <li>✓ Análisis de beneficiarios</li>
+                        <li>✓ Disponibilidad presupuestal</li>
+                        <li>✓ Timeline y recursos</li>
+                        <li>✓ Sistemas similares existentes</li>
+                    </ul>
+                    <a href="Formulario_viabilidad_NS.html" class="btn-view" target="_blank">
+                        <span>Ver Formulario</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Requerimientos -->
+                <div class="form-card featured-card">
+                    <div class="form-badge featured-badge">⭐ Completo</div>
+                    <div class="form-icon">📋</div>
+                    <h3>Requerimientos Técnicos</h3>
+                    <p class="form-description">Especificación técnica integral que elimina ambigüedades en el desarrollo</p>
+                    <ul class="form-features">
+                        <li>✓ 9 secciones exhaustivas</li>
+                        <li>✓ Marco teórico y contexto</li>
+                        <li>✓ Flujos y procesos detallados</li>
+                        <li>✓ Criterios de aceptación</li>
+                    </ul>
+                    <a href="Formulario_Requerimientos.html" class="btn-view featured-btn" target="_blank">
+                        <span>Ver Formulario</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Modificaciones -->
+                <div class="form-card">
+                    <div class="form-badge">🔧 Mantenimiento</div>
+                    <div class="form-icon">⚙️</div>
+                    <h3>Solicitud de Modificación</h3>
+                    <p class="form-description">Mejoras y correcciones a sistemas existentes con clasificación de mantenimiento</p>
+                    <ul class="form-features">
+                        <li>✓ Tipo de mantenimiento</li>
+                        <li>✓ Prioridad y plazos</li>
+                        <li>✓ Pasos para reproducir</li>
+                        <li>✓ Impacto en operaciones</li>
+                    </ul>
+                    <a href="Formulario_Modificacion.html" class="btn-view" target="_blank">
+                        <span>Ver Formulario</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARQUITECTURA TÉCNICA -->
+    <section class="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Stack Tecnológico</span>
+                <h2>Arquitectura del Sistema</h2>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-layer">Frontend</div>
+                    <div class="tech-name">Angular </div>
+                    <p>SPA con TypeScript, Reactive Forms y manejo de estado centralizado</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-layer">Backend</div>
+                    <div class="tech-name">ASP.NET Core + C#</div>
+                    <p>API RESTful con patrón Repository y Entity Framework</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-layer">Base de Datos</div>
+                    <div class="tech-name">SQL Server</div>
+                    <p>Catálogos normalizados con procedimientos almacenados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS CLAVE -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Impacto Esperado</span>
+                <h2>Beneficios del Sistema</h2>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-number">01</div>
+                    <h4>Eficiencia Operativa</h4>
+                    <p>Reducción de tiempos de gestión en 70% mediante automatización de procesos</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">02</div>
+                    <h4>Trazabilidad Completa</h4>
+                    <p>Bitácora automática de esfuerzo para justificar carga de trabajo del equipo</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">03</div>
+                    <h4>Priorización Inteligente</h4>
+                    <p>Gestión de urgencias sin perder seguimiento de proyectos en curso</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">04</div>
+                    <h4>Documentación Centralizada</h4>
+                    <p>Repositorio único de requerimientos, evidencias y documentación técnica</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">05</div>
+                    <h4>Métricas en Tiempo Real</h4>
+                    <p>Dashboards ejecutivos con estadísticas de productividad y tiempos de respuesta</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-number">06</div>
+                    <h4>Escalabilidad</h4>
+                    <p>Arquitectura modular preparada para crecer con las necesidades del ISSEG</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo_ISSEG.jpeg" alt="Logo ISSEG" class="logo-isseg-footer-img">
+                    <p class="footer-tagline">Instituto de Seguridad Social del Estado de Guanajuato</p>
+                </div>
+                <div class="footer-info">
+                    <div class="info-block">
+                        <h4>Proyecto</h4>
+                        <p>Sistema de Gestión de Solicitudes</p>
+                        <p class="text-muted">Departamento de Desarrollo TI</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Periodo</h4>
+                        <p>Enero - Julio 2026</p>
+                        <p class="text-muted">7 meses de desarrollo</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Modalidad</h4>
+                        <p>Residencia Profesional</p>
+                        <p class="text-muted">Especialidad en Ciberseguridad</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ISSEG - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

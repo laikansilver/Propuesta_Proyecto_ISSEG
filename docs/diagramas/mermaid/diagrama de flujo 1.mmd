@@ -1,0 +1,8 @@
+graph TD
+    A[Inicio: Usuario genera Solicitud] --> B{¿Es Urgente?}
+    
+    B -- Sí --> C1((Conector A))
+    B -- No --> L{Tipo de Petición}
+    
+    L -- Nuevo Sistema --> M1((Conector B))
+    L -- Mejora/Modificación --> N1((Conector C))

@@ -1,0 +1,17 @@
+graph TD
+    %% Rama Urgencia
+    A1((Conector A)) --> C["Formulario Simplificado:<br/>Captura de pantalla + Descripción"]
+    C --> D[Notificación Inmediata al PM]
+    D --> E[Evaluación de Impacto Prioritaria]
+    E --> F1((Conector D))
+
+    %% Rama Nuevo Sistema
+    B1((Conector B)) --> M[Formulario 1: Viabilidad técnica]
+    M --> O{Validación PM}
+    O -- rechazado --> P[Notificación motivo de rechazo]
+    P --> J1((Conector E))
+    O -- aceptado --> Q[Asignación de desarrollador]
+    Q --> S[Formulario 2: Requerimientos Detallados]
+    S --> U{¿Surgió una urgencia?}
+    U -- Sí --> F1
+    U -- No --> R1((Conector F))

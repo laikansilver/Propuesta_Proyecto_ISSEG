@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGS - Evaluación de Viabilidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="formularios_estandar.css">
+</head>
+<body>
+
+<div class="main-container">
+    <div class="card">
+        <div class="header">
+            <h2>Propuesta de Nuevo Sistema</h2>
+            <p class="subtitle">Evaluación de Viabilidad Técnica y Operativa</p>
+            <div class="progress-indicator">
+                <span class="badge-info">Este formulario será evaluado por el Product Manager</span>
+            </div>
+        </div>
+
+        <form id="formViabilidad" enctype="multipart/form-data">
+            
+            <!-- SECCIÓN 1: INFORMACIÓN GENERAL -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h3>Información General del Proyecto</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="nombre-proyecto">Nombre sugerido para el nuevo sistema *</label>
+                    <input type="text" id="nombre-proyecto" required 
+                        placeholder="Ej: Sistema de Control de Préstamos Internos">
+                    <span class="field-hint">Un nombre claro que identifique el propósito del sistema</span>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="area-solicitante">Área solicitante *</label>
+                        <select id="area-solicitante" required>
+                            <option value="">-- Seleccione su área --</option>
+                            <option value="finanzas">Finanzas</option>
+                            <option value="rh">Recursos Humanos</option>
+                            <option value="prestaciones">Prestaciones</option>
+                            <option value="cobranza">Cobranza</option>
+                            <option value="juridico">Jurídico</option>
+                            <option value="direccion">Dirección General</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label for="responsable-area">Responsable del área *</label>
+                        <input type="text" id="responsable-area" required 
+                            placeholder="Nombre del jefe de área">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: JUSTIFICACIÓN -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h3>Justificación y Necesidad</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="objetivo">¿Qué problema busca resolver este sistema? *</label>
+                    <textarea id="objetivo" rows="4" required 
+                        placeholder="Describa el problema específico que motiva la creación de este sistema..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="justificacion">Beneficios esperados *</label>
+                    <textarea id="justificacion" rows="4" required 
+                        placeholder="Ej: Ahorro de tiempo en X horas, eliminación de papel, reducción de errores, mejor control..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="proceso-actual">¿Cómo se realiza actualmente este proceso? *</label>
+                    <textarea id="proceso-actual" rows="4" required 
+                        placeholder="Describa cómo se hace el trabajo HOY (formatos en papel, Excel, correos, etc.)"></textarea>
+                    <span class="field-hint">Esto ayuda a entender qué se va a reemplazar</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="sistemas-similares">¿Existe algún sistema similar en otra área del ISSEG?</label>
+                    <select id="sistemas-similares">
+                        <option value="">Seleccione una opción</option>
+                        <option value="no">No, sería el primero</option>
+                        <option value="si">Sí, hay uno similar en otra área</option>
+                        <option value="desconozco">No lo sé</option>
+                    </select>
+                </div>
+
+                <div class="field-group" id="detalle-similar" style="display:none;">
+                    <label for="cual-similar">¿Cuál sistema y en qué área?</label>
+                    <input type="text" id="cual-similar" 
+                        placeholder="Especifique el sistema y el área que lo usa">
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: ALCANCE Y POBLACIÓN -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h3>Alcance y Beneficiarios</h3>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="usuarios-internos">Usuarios internos (empleados) *</label>
+                        <input type="number" id="usuarios-internos" min="0" required 
+                            placeholder="Cantidad estimada">
+                        <span class="field-hint">Empleados del ISSEG que usarán el sistema</span>
+                    </div>
+                    <div class="field-group">
+                        <label for="usuarios-externos">Usuarios externos (afiliados/ciudadanos)</label>
+                        <input type="number" id="usuarios-externos" min="0" 
+                            placeholder="Si aplica">
+                        <span class="field-hint">Personas fuera del ISSEG que lo usarán</span>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label>¿Qué áreas del ISSEG se beneficiarán? *</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="areas" value="solo-nuestra"> Solo nuestra área</label>
+                        <label><input type="checkbox" name="areas" value="varias"> Varias áreas (especificar abajo)</label>
+                        <label><input type="checkbox" name="areas" value="todas"> Todas las áreas de la institución</label>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="areas-detalle">Si son varias áreas, especifique cuáles</label>
+                    <input type="text" id="areas-detalle" 
+                        placeholder="Ej: Finanzas, Prestaciones, Recursos Humanos">
+                </div>
+            </div>
+
+            <!-- SECCIÓN 4: RECURSOS Y TIEMPO -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h3>Recursos y Plazos</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="presupuesto">¿Se cuenta con presupuesto asignado?</label>
+                    <select id="presupuesto">
+                        <option value="">Seleccione una opción</option>
+                        <option value="si">Sí, hay presupuesto aprobado</option>
+                        <option value="tramite">Está en trámite</option>
+                        <option value="no">No, se requiere con recursos internos</option>
+                    </select>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="fecha-deseada">¿Para cuándo se necesita? *</label>
+                        <select id="fecha-deseada" required>
+                            <option value="">Seleccione un plazo</option>
+                            <option value="urgente">Urgente (menos de 3 meses)</option>
+                            <option value="corto">Corto plazo (3-6 meses)</option>
+                            <option value="medio">Mediano plazo (6-12 meses)</option>
+                            <option value="largo">Largo plazo (más de 12 meses)</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label for="motivo-fecha">¿Por qué esa fecha?</label>
+                        <input type="text" id="motivo-fecha" 
+                            placeholder="Ej: Cierre fiscal, nueva normativa...">
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="prioridad">Prioridad sugerida para el área</label>
+                    <select id="prioridad">
+                        <option value="">Seleccione...</option>
+                        <option value="baja">Baja - Puede esperar</option>
+                        <option value="media">Media - Deseable este año</option>
+                        <option value="alta">Alta - Necesario para operar mejor</option>
+                        <option value="critica">Crítica - Mandatorio por normativa</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 5: DOCUMENTACIÓN -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h3>Documentación de Apoyo</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="documentos-apoyo">Documentos de referencia (opcional pero recomendado)</label>
+                    <div class="upload-area">
+                        <input type="file" id="documentos-apoyo" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                            </svg>
+                            <p>Arrastra aquí los archivos o haz clic para seleccionar</p>
+                            <small>Formatos actuales, manuales de procedimientos, diagramas, ejemplos de reportes, etc.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="observaciones">Información adicional relevante</label>
+                    <textarea id="observaciones" rows="4" 
+                        placeholder="Cualquier otro detalle que considere importante para evaluar este proyecto..."></textarea>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 6: CONTACTO -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">06</span>
+                    <h3>Datos de Contacto</h3>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="nombre-contacto">Nombre del solicitante *</label>
+                        <input type="text" id="nombre-contacto" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="cargo">Cargo o puesto *</label>
+                        <input type="text" id="cargo" required>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="telefono">Teléfono/Extensión *</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="correo">Correo electrónico *</label>
+                        <input type="email" id="correo" required>
+                    </div>
+                </div>
+
+                <div class="alert-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                    <p>El Product Manager evaluará su propuesta y le notificará si es aceptada o rechazada, indicando los motivos de la decisión.</p>
+                </div>
+            </div>
+
+            <!-- BOTONES -->
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" onclick="window.history.back()">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Enviar Propuesta para Evaluación
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+// Mostrar campo de sistema similar
+document.getElementById('sistemas-similares').addEventListener('change', function() {
+    const detalle = document.getElementById('detalle-similar');
+    detalle.style.display = this.value === 'si' ? 'block' : 'none';
+});
+
+// Validación y envío
+document.getElementById('formViabilidad').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const checkboxes = document.querySelectorAll('input[name="areas"]:checked');
+    if (checkboxes.length === 0) {
+        alert('Por favor seleccione qué áreas se beneficiarán del sistema');
+        return;
+    }
+    
+    if (confirm('¿Está seguro de enviar esta propuesta? Será evaluada por el Product Manager en los próximos días.')) {
+        alert('Propuesta enviada exitosamente.\n\nFolio asignado: VIAB-' + new Date().getTime().toString().slice(-6) + '\n\nRecibirá una notificación por correo con la decisión del Product Manager.');
+    }
+});
+
+// Preview de archivos
+document.getElementById('documentos-apoyo').addEventListener('change', function() {
+    const files = this.files;
+    if (files.length > 0) {
+        const label = this.nextElementSibling;
+        label.querySelector('p').textContent = `${files.length} archivo(s) seleccionado(s)`;
+        label.querySelector('small').textContent = Array.from(files).map(f => f.name).join(', ');
+        label.style.borderColor = '#34C759';
+        label.style.backgroundColor = '#e8f8ed';
+    }
+});
+</script>
+
+</body>
+</html>

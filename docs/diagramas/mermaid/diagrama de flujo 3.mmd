@@ -1,0 +1,10 @@
+graph TD
+
+    %% Rama Modificación
+    C1((Conector C)) --> N["Selección de Sistema Existente<br/>+ Formulario de Falla"]
+    N --> X{Validación PM}
+    X -- rechazado --> a[Notificación de motivo de rechazo]
+    a --> W1((Conector G))
+    X -- aceptado --> Y[Notificación al desarrollador responsable]
+    Y --> b[Resolución y desarrollo]
+    b --> W1

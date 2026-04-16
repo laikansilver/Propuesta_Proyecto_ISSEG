@@ -1,0 +1,205 @@
+erDiagram
+    ROL ||--o{ USUARIO_ROL : asigna
+    USUARIO ||--o{ USUARIO_ROL : tiene
+
+    AREA ||--o{ AREA : depende_de
+    USUARIO ||--o{ USUARIO_AREA : adscrito
+    AREA ||--o{ USUARIO_AREA : agrupa
+
+    AREA ||--o{ AREA_SISTEMA : usa
+    SISTEMA ||--o{ AREA_SISTEMA : disponible_en
+
+    SISTEMA ||--o{ SISTEMA_DESARROLLADOR : asigna
+    USUARIO ||--o{ SISTEMA_DESARROLLADOR : participa
+
+    TIPO_SOLICITUD ||--o{ SOLICITUD : clasifica
+    PRIORIDAD_SOLICITUD ||--o{ SOLICITUD : prioriza
+    ESTADO_SOLICITUD ||--o{ SOLICITUD : estado_actual
+    AREA ||--o{ SOLICITUD : solicita
+    USUARIO ||--o{ SOLICITUD : crea
+    SISTEMA ||--o{ SOLICITUD : impacta
+
+    SOLICITUD ||--o{ SOLICITUD_DESARROLLADOR : tiene
+    USUARIO ||--o{ SOLICITUD_DESARROLLADOR : trabaja_en
+
+    SOLICITUD ||--o{ SOLICITUD_HISTORIAL_ESTADO : cambia
+    ESTADO_SOLICITUD ||--o{ SOLICITUD_HISTORIAL_ESTADO : estado_anterior
+    ESTADO_SOLICITUD ||--o{ SOLICITUD_HISTORIAL_ESTADO : estado_nuevo
+    USUARIO ||--o{ SOLICITUD_HISTORIAL_ESTADO : registra
+
+    SOLICITUD ||--o{ SOLICITUD_APROBACION : evalua
+    USUARIO ||--o{ SOLICITUD_APROBACION : aprueba
+
+    SOLICITUD ||--o{ SOLICITUD_COMENTARIO : comenta
+    USUARIO ||--o{ SOLICITUD_COMENTARIO : escribe
+
+    SOLICITUD ||--o{ SOLICITUD_ADJUNTO : adjunta
+    USUARIO ||--o{ SOLICITUD_ADJUNTO : sube
+
+    USUARIO ||--o{ NOTIFICACION : recibe
+    SOLICITUD ||--o{ NOTIFICACION : notifica
+
+    ROL {
+        int rol_id PK
+        varchar clave UK
+        varchar nombre
+        bit activo
+    }
+
+    USUARIO {
+        int usuario_id PK
+        varchar nombre
+        varchar correo_institucional UK
+        varchar puesto
+        bit activo
+    }
+
+    USUARIO_ROL {
+        int usuario_rol_id PK
+        int usuario_id FK
+        int rol_id FK
+        bit activo
+        datetime2 fecha_asignacion
+        datetime2 fecha_fin
+    }
+
+    AREA {
+        int area_id PK
+        int area_padre_id FK
+        varchar nombre UK
+        varchar tipo_area
+        tinyint nivel
+        bit activa
+    }
+
+    USUARIO_AREA {
+        int usuario_area_id PK
+        int usuario_id FK
+        int area_id FK
+        bit es_titular
+        bit activo
+        datetime2 fecha_inicio
+        datetime2 fecha_fin
+    }
+
+    SISTEMA {
+        int sistema_id PK
+        varchar clave UK
+        varchar nombre
+        bit activo
+    }
+
+    AREA_SISTEMA {
+        int area_sistema_id PK
+        int area_id FK
+        int sistema_id FK
+        bit activo
+    }
+
+    SISTEMA_DESARROLLADOR {
+        int sistema_desarrollador_id PK
+        int sistema_id FK
+        int usuario_id FK
+        varchar tipo_participacion
+        bit activo
+    }
+
+    TIPO_SOLICITUD {
+        int tipo_solicitud_id PK
+        varchar clave UK
+        varchar nombre
+        bit activo
+    }
+
+    ESTADO_SOLICITUD {
+        int estado_solicitud_id PK
+        varchar clave UK
+        varchar nombre
+        bit es_terminal
+        bit activo
+    }
+
+    PRIORIDAD_SOLICITUD {
+        int prioridad_solicitud_id PK
+        varchar clave UK
+        varchar nombre
+        tinyint peso
+        bit activo
+    }
+
+    SOLICITUD {
+        bigint solicitud_id PK
+        varchar folio UK
+        varchar titulo
+        varchar descripcion
+        int area_solicitante_id FK
+        int sistema_id FK
+        int tipo_solicitud_id FK
+        int prioridad_solicitud_id FK
+        int estado_solicitud_id FK
+        int creado_por_usuario_id FK
+        datetime2 fecha_solicitud
+        datetime2 fecha_compromiso
+        datetime2 fecha_resolucion
+        decimal esfuerzo_horas
+        bit activo
+    }
+
+    SOLICITUD_DESARROLLADOR {
+        bigint solicitud_desarrollador_id PK
+        bigint solicitud_id FK
+        int usuario_id FK
+        varchar tipo_participacion
+        bit activo
+        datetime2 fecha_asignacion
+        datetime2 fecha_fin
+    }
+
+    SOLICITUD_HISTORIAL_ESTADO {
+        bigint solicitud_historial_estado_id PK
+        bigint solicitud_id FK
+        int estado_anterior_id FK
+        int estado_nuevo_id FK
+        int cambiado_por_usuario_id FK
+        datetime2 fecha_cambio
+    }
+
+    SOLICITUD_APROBACION {
+        bigint solicitud_aprobacion_id PK
+        bigint solicitud_id FK
+        int aprobado_por_usuario_id FK
+        varchar estatus_aprobacion
+        varchar motivo
+        datetime2 fecha_aprobacion
+    }
+
+    SOLICITUD_COMENTARIO {
+        bigint solicitud_comentario_id PK
+        bigint solicitud_id FK
+        int autor_usuario_id FK
+        varchar comentario
+        bit es_interno
+        datetime2 fecha_comentario
+    }
+
+    SOLICITUD_ADJUNTO {
+        bigint solicitud_adjunto_id PK
+        bigint solicitud_id FK
+        int subido_por_usuario_id FK
+        varchar nombre_archivo
+        varchar ruta_archivo
+        varchar tipo_mime
+        bigint tamanio_bytes
+        datetime2 fecha_subida
+    }
+
+    NOTIFICACION {
+        bigint notificacion_id PK
+        int usuario_id FK
+        bigint solicitud_id FK
+        varchar titulo
+        varchar mensaje
+        bit leida
+        datetime2 fecha_creacion
+        datetime2 fecha_lectura
+    }

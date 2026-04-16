@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Desarrollo - SGSPCSI | ISSEG</title>
+    <link rel="stylesheet" href="../styles/home_developer.css">
+    <script type="module" src="../../speed-insights.js"></script>
+</head>
+<body>
+    
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menú</h3>
+            <button class="sidebar-close" id="sidebarClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home_developer.html" class="nav-item active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Inicio</span>
+            </a>
+            <a href="mis_tareas.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="9" x2="15" y2="9"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                <span>Mis Tareas</span>
+                <span class="badge">5</span>
+            </a>
+            <a href="../../docs/documentacion/documentacion.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <span>Documentación</span>
+            </a>
+        </nav>
+    </aside>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <img src="../../assets/images/logo_ISSEG.jpeg" alt="ISSEG" class="header-logo">
+                <div class="header-info">
+                    <h1 class="system-title">SGSPCSI</h1>
+                    <p class="system-subtitle">Panel de Desarrollo</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="notifications-btn" id="notificationsBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge" id="notificationBadge">5</span>
+                </button>
+                <div class="user-profile-dropdown">
+                    <button class="user-profile-btn" id="userProfileBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <div class="user-details">
+                            <span class="user-name" id="userName">Desarrollador</span>
+                            <span class="user-role">Área de Sistemas</span>
+                        </div>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <a href="perfil_developer.html" class="dropdown-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Editar perfil</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout-item" id="btnLogout">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16 17 21 12 16 7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
+                            <span>Cerrar Sesión</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notifications Panel -->
+        <div class="notifications-panel" id="notificationsPanel">
+            <div class="notifications-header">
+                <h3>Notificaciones</h3>
+                <button class="mark-all-read" id="markAllRead">Marcar todas como leídas</button>
+            </div>
+            <div class="notifications-list" id="notificationsList">
+                <!-- Se llenará dinámicamente -->
+            </div>
+            <div class="notifications-footer">
+                <a href="notificaciones.html">Ver todas las notificaciones</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h2>Panel de Desarrollo</h2>
+                <p class="welcome-text">Gestiona y da seguimiento a todas las solicitudes recibidas del área de Sistemas Institucionales.</p>
+            </section>
+
+            <!-- Stats Dashboard -->
+            <div class="stats-grid">
+                <div class="stat-card pending">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">Pendientes</p>
+                        <p class="stat-value" id="statPendientes">8</p>
+                        <p class="stat-change">Requieren revisión</p>
+                    </div>
+                </div>
+
+                <div class="stat-card progress">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">En Desarrollo</p>
+                        <p class="stat-value" id="statEnDesarrollo">5</p>
+                        <p class="stat-change">Están en proceso</p>
+                    </div>
+                </div>
+
+                <div class="stat-card completed">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">Completadas</p>
+                        <p class="stat-value" id="statCompletadas">12</p>
+                        <p class="stat-change">Este mes</p>
+                    </div>
+                </div>
+
+                <div class="stat-card urgent">
+                    <div class="stat-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">Urgentes</p>
+                        <p class="stat-value" id="statUrgentes">2</p>
+                        <p class="stat-change">Atención inmediata</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mis Tareas Asignadas -->
+            <section class="my-tasks-section">
+                <div class="section-header">
+                    <h3 class="section-title">Mis Tareas Asignadas</h3>
+                    <a href="mis_tareas.html" class="btn-view-all">
+                        Ver todas mis tareas
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="tasks-kanban" id="tasksKanban">
+                    <!-- To Do -->
+                    <div class="kanban-column">
+                        <div class="kanban-header pending">
+                            <h4>Por Hacer</h4>
+                            <span class="task-count" id="todoCount">0</span>
+                        </div>
+                        <div class="kanban-tasks" id="todoTasks">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- In Progress -->
+                    <div class="kanban-column">
+                        <div class="kanban-header progress">
+                            <h4>En Progreso</h4>
+                            <span class="task-count" id="inProgressCount">0</span>
+                        </div>
+                        <div class="kanban-tasks" id="inProgressTasks">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Blocked -->
+                    <div class="kanban-column">
+                        <div class="kanban-header blocked">
+                            <h4>Bloqueadas</h4>
+                            <span class="task-count" id="blockedCount">0</span>
+                        </div>
+                        <div class="kanban-tasks" id="blockedTasks">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Testing -->
+                    <div class="kanban-column">
+                        <div class="kanban-header testing">
+                            <h4>En Pruebas</h4>
+                            <span class="task-count" id="testingCount">0</span>
+                        </div>
+                        <div class="kanban-tasks" id="testingTasks">
+                            <!-- Se llenará dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity Dashboard -->
+            <div class="dashboard-grid">
+                <!-- Recent Activity -->
+                <section class="activity-section">
+                    <h3 class="section-title">Actividad Reciente</h3>
+                    <div class="activity-list" id="activityList">
+                        <!-- Se llenará dinámicamente -->
+                    </div>
+                </section>
+
+                <!-- Quick Stats & Actions -->
+                <section class="quick-panel">
+                    <h3 class="section-title">Métricas Personales</h3>
+                    
+                    <div class="personal-stats">
+                        <div class="personal-stat">
+                            <div class="stat-icon-small success">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="stat-label-small">Completadas (mes)</p>
+                                <p class="stat-value-small" id="personalCompleted">0</p>
+                            </div>
+                        </div>
+
+                        <div class="personal-stat">
+                            <div class="stat-icon-small progress">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="stat-label-small">En desarrollo</p>
+                                <p class="stat-value-small" id="personalInProgress">0</p>
+                            </div>
+                        </div>
+
+                        <div class="personal-stat">
+                            <div class="stat-icon-small warning">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="stat-label-small">Promedio (días)</p>
+                                <p class="stat-value-small" id="personalAvgTime">0</p>
+                            </div>
+                        </div>
+
+                        <div class="personal-stat">
+                            <div class="stat-icon-small info">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="stat-label-small">Tasa de éxito</p>
+                                <p class="stat-value-small" id="personalSuccessRate">0%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions-panel">
+                        <h4>Acciones Rápidas</h4>
+                        <button class="quick-action-btn" onclick="window.location.href='mis_tareas.html'">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="9" y1="9" x2="15" y2="9"></line>
+                            </svg>
+                            Gestionar mis tareas
+                        </button>
+                        <button class="quick-action-btn" onclick="window.location.href='documentacion.html'">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            Ver documentación
+                        </button>
+                        <button class="quick-action-btn" onclick="reportIssue()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            Reportar problema
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Resources & Tools -->
+            <section class="tools-section">
+                <h3 class="section-title">Recursos y Herramientas</h3>
+                
+                <div class="tools-grid">
+                    <a href="../../docs/documentacion/documentacion.html" class="tool-card clickable">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        <div class="tool-content">
+                            <h4>Documentación Técnica</h4>
+                            <p>Especificaciones, APIs y guías de desarrollo</p>
+                        </div>
+                        <svg class="tool-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+
+                    <a href="#" onclick="openExternalTool('git'); return false;" class="tool-card clickable">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                        <div class="tool-content">
+                            <h4>Control de Versiones</h4>
+                            <p>Repositorio Git del proyecto</p>
+                        </div>
+                        <svg class="tool-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+
+                    <a href="#" onclick="openExternalTool('api'); return false;" class="tool-card clickable">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <div class="tool-content">
+                            <h4>API Testing</h4>
+                            <p>Prueba endpoints y servicios</p>
+                        </div>
+                        <svg class="tool-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+
+                    <a href="#" onclick="openExternalTool('db'); return false;" class="tool-card clickable">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                        </svg>
+                        <div class="tool-content">
+                            <h4>Base de Datos</h4>
+                            <p>Administrador de base de datos</p>
+                        </div>
+                        <svg class="tool-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+
+                    <a href="#" onclick="openExternalTool('logs'); return false;" class="tool-card clickable">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        <div class="tool-content">
+                            <h4>Logs del Sistema</h4>
+                            <p>Monitoreo y debugging en tiempo real</p>
+                        </div>
+                        <svg class="tool-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+
+                    <a href="#" onclick="openExternalTool('ci'); return false;" class="tool-card clickable">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m4.22-13.22l-4.24 4.24m0 5.96l4.24 4.24M19 12h-6m0 0H7m5.78 7.22l-4.24-4.24m5.96 0l4.24 4.24"></path>
+                        </svg>
+                        <div class="tool-content">
+                            <h4>CI/CD Pipeline</h4>
+                            <p>Estado de builds y deployments</p>
+                        </div>
+                        <svg class="tool-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2026 ISSEG - Instituto de Seguridad Social del Estado de Guanajuato</p>
+        <p class="footer-version">SGSPCSI v1.0 - Panel de Desarrollo</p>
+    </footer>
+
+    <script src="../scripts/home_developer.js"></script>
+</body>
+</html>

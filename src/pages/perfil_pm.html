@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - PM | SGSPCSI</title>
+    <link rel="stylesheet" href="../styles/home_pm.css">
+    <link rel="stylesheet" href="../styles/perfil.css">
+    <script type="module" src="../../speed-insights.js"></script>
+</head>
+<body>
+    
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menú</h3>
+            <button class="sidebar-close" id="sidebarClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="home_pm.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Inicio</span>
+            </a>
+            <a href="dashboard_pm.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                <span>Dashboard Ejecutivo</span>
+            </a>
+            <a href="aprobaciones.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Aprobaciones</span>
+            </a>
+            <a href="equipo.html" class="nav-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                <span>Gestión de Equipo</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <img src="../../assets/images/logo_ISSEG.jpeg" alt="ISSEG" class="header-logo">
+                <div class="header-info">
+                    <h1 class="system-title">SGSPCSI</h1>
+                    <p class="system-subtitle">Perfil de Usuario</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="notifications-btn" id="notificationsBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge" id="notificationBadge">6</span>
+                </button>
+                <div class="user-profile-dropdown">
+                    <button class="user-profile-btn" id="userProfileBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        <div class="user-details">
+                            <span class="user-name" id="userName">Product Manager</span>
+                            <span class="user-role">Gestión de Proyectos</span>
+                        </div>
+                        <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <a href="perfil_pm.html" class="dropdown-item">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span>Editar perfil</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item logout-item" id="btnLogout">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16 17 21 12 16 7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
+                            <span>Cerrar Sesión</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            
+            <!-- Profile Header -->
+            <section class="profile-header">
+                <div class="profile-avatar">
+                    <div class="avatar-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <button class="btn-change-photo">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        Cambiar Foto
+                    </button>
+                </div>
+                <div class="profile-summary">
+                    <h2 id="profileName">Product Manager</h2>
+                    <p class="profile-email" id="profileEmail">pm@isseg.gob.mx</p>
+                    <p class="profile-position" id="profilePosition">Gerente de Proyectos</p>
+                </div>
+            </section>
+
+            <!-- Profile Form -->
+            <section class="profile-form-section">
+                <div class="section-header">
+                    <h3>Información Personal</h3>
+                    <button class="btn-edit" id="btnEdit">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Editar
+                    </button>
+                </div>
+
+                <form class="profile-form" id="profileForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">Nombre(s)</label>
+                            <input type="text" id="firstName" name="firstName" value="Product" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Apellidos</label>
+                            <input type="text" id="lastName" name="lastName" value="Manager" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Correo Institucional</label>
+                            <input type="email" id="email" name="email" value="pm@isseg.gob.mx" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" name="phone" value="(473) 555-0123" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="extension">Extensión</label>
+                            <input type="text" id="extension" name="extension" value="5678" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="employeeId">Número de Empleado</label>
+                            <input type="text" id="employeeId" name="employeeId" value="EMP-2024-9999" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="department">Departamento</label>
+                            <input type="text" id="department" name="department" value="Dirección de Proyectos" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position">Puesto</label>
+                            <input type="text" id="position" name="position" value="Gerente" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-actions" style="display: none;">
+                        <button type="button" class="btn-cancel" id="btnCancel">Cancelar</button>
+                        <button type="submit" class="btn-save">Guardar Cambios</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Preferences Section -->
+            <section class="preferences-section">
+                <div class="section-header">
+                    <h3>Preferencias</h3>
+                </div>
+
+                <div class="preference-item">
+                    <div class="preference-info">
+                        <h4>Notificaciones por Correo</h4>
+                        <p>Recibir actualizaciones sobre mis solicitudes</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="emailNotifications" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="preference-item">
+                    <div class="preference-info">
+                        <h4>Notificaciones Push</h4>
+                        <p>Recibir notificaciones en tiempo real</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="pushNotifications" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="preference-item">
+                    <div class="preference-info">
+                        <h4>Modo Oscuro</h4>
+                        <p>Cambiar la apariencia del sistema</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="darkMode">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="../scripts/perfil.js"></script>
+</body>
+</html>

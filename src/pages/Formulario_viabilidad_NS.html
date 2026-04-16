@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGS - Evaluación de Viabilidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/formularios_estandar.css">
+    <script type="module" src="../../speed-insights.js"></script>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="card">
+        <div class="header">
+            <h2>Propuesta de Nuevo Sistema</h2>
+            <p class="subtitle">Evaluación de Viabilidad Técnica y Operativa</p>
+            <div class="progress-indicator">
+                <span class="badge-info">Este formulario será evaluado por el Product Manager</span>
+            </div>
+        </div>
+
+        <form id="formViabilidad" enctype="multipart/form-data">
+            
+            <!-- SECCIÓN 1: INFORMACIÓN GENERAL -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h3>Información General del Proyecto</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="nombre-proyecto">Nombre sugerido para el nuevo sistema *</label>
+                    <input type="text" id="nombre-proyecto" required 
+                        placeholder="Ej: Sistema de Control de Préstamos Internos">
+                    <span class="field-hint">Un nombre claro que identifique el propósito del sistema</span>
+                </div>
+
+                <!-- Campos ocultos para información interna -->
+                <input type="hidden" id="area-solicitante">
+                <input type="hidden" id="nombre-responsable">
+                <input type="hidden" id="apellido-paterno-responsable">
+                <input type="hidden" id="apellido-materno-responsable">
+            </div>
+
+            <!-- SECCIÓN 2: JUSTIFICACIÓN -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h3>Justificación y Necesidad</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="objetivo">¿Qué problema busca resolver este sistema? *</label>
+                    <textarea id="objetivo" rows="4" required 
+                        placeholder="Describa el problema específico que motiva la creación de este sistema..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label>Beneficios esperados *</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="beneficios" value="ahorro-tiempo"> Ahorro de tiempo en procesos</label>
+                        <label><input type="checkbox" name="beneficios" value="reduccion-errores"> Reducción de errores manuales</label>
+                        <label><input type="checkbox" name="beneficios" value="automatizacion"> Automatización de procesos</label>
+                        <label><input type="checkbox" name="beneficios" value="cumplimiento-normativo"> Cumplimiento normativo/regulatorio</label>
+                        <label><input type="checkbox" name="beneficios" value="mejora-calidad"> Mejora en la calidad del servicio</label>
+                        <label><input type="checkbox" name="beneficios" value="reduccion-costos"> Reducción de costos operativos</label>
+                        <label><input type="checkbox" name="beneficios" value="otros" id="check-otros-beneficios"> Otros (especificar)</label>
+                    </div>
+                    <span class="field-hint">Seleccione todos los beneficios que apliquen</span>
+                </div>
+
+                <div class="field-group" id="otros-beneficios-container" style="display: none; margin-left: 20px; border-left: 2px solid #ccc; padding-left: 15px;">
+                    <label for="otros-beneficios-texto">Especifique otros beneficios:</label>
+                    <textarea id="otros-beneficios-texto" rows="3" 
+                        placeholder="Describa otros beneficios no listados anteriormente..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="proceso-actual">¿Cómo se realiza actualmente este proceso? *</label>
+                    <textarea id="proceso-actual" rows="4" required 
+                        placeholder="Describa cómo se hace el trabajo HOY (formatos en papel, Excel, correos, etc.)"></textarea>
+                    <span class="field-hint">Esto ayuda a entender qué se va a reemplazar</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="sistemas-similares">¿Existe algún sistema similar en otra área del ISSEG?</label>
+                    <select id="sistemas-similares">
+                        <option value="">Seleccione una opción</option>
+                        <option value="no">No, sería el primero</option>
+                        <option value="si">Sí, hay uno similar en otra área</option>
+                        <option value="desconozco">No lo sé</option>
+                    </select>
+                </div>
+
+                <div class="field-group" id="detalle-similar" style="display:none;">
+                    <label for="cual-similar">¿Cuál sistema y en qué área?</label>
+                    <input type="text" id="cual-similar" 
+                        placeholder="Especifique el sistema y el área que lo usa">
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: ALCANCE Y POBLACIÓN -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h3>Alcance y Beneficiarios</h3>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="usuarios-internos">Usuarios internos (empleados) *</label>
+                        <input type="number" id="usuarios-internos" min="0" required 
+                            placeholder="Cantidad estimada">
+                        <span class="field-hint">Empleados del ISSEG que usarán el sistema</span>
+                    </div>
+                    <div class="field-group">
+                        <label for="usuarios-externos">Usuarios externos (afiliados/ciudadanos)</label>
+                        <input type="number" id="usuarios-externos" min="0" 
+                            placeholder="Si aplica">
+                        <span class="field-hint">Personas fuera del ISSEG que lo usarán</span>
+                    </div>
+                </div>
+
+               <div class="field-group">
+    <label>¿Qué áreas del ISSEG se beneficiarán? *</label>
+    <div class="checkbox-group">
+        <label><input type="checkbox" name="areas" value="solo-nuestra"> Solo nuestra área</label>
+        <label><input type="checkbox" name="areas" value="varias" id="check-varias"> Varias áreas (especificar abajo)</label>
+        <label><input type="checkbox" name="areas" value="todas"> Todas las áreas de la institución</label>
+    </div>
+</div>
+
+<div id="submenu-areas" class="field-group" style="display: none; margin-left: 20px; border-left: 2px solid #ccc; padding-left: 15px;">
+    <label>Seleccione las áreas específicas:</label>
+    <div class="checkbox-group grid-submenu">
+        <label><input type="checkbox" name="detalles_areas" value="finanzas"> Finanzas</label>
+        <label><input type="checkbox" name="detalles_areas" value="prestaciones"> Prestaciones</label>
+        <label><input type="checkbox" name="detalles_areas" value="recursos-humanos"> Recursos Humanos</label>
+        <label><input type="checkbox" name="detalles_areas" value="comercial"> Comercial</label>
+        <label><input type="checkbox" name="detalles_areas" value="sistemas"> Sistemas / TI</label>
+    </div>
+</div>
+            </div>
+
+            <!-- SECCIÓN 4: DOCUMENTACIÓN -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h3>Documentación de Apoyo</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="documentos-apoyo">Documentos de referencia (opcional pero recomendado)</label>
+                    <div class="upload-area">
+                        <input type="file" id="documentos-apoyo" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                            </svg>
+                            <p>Arrastra aquí los archivos o haz clic para seleccionar</p>
+                            <small>Formatos actuales, manuales de procedimientos, diagramas, ejemplos de reportes, etc.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="observaciones">Información adicional relevante</label>
+                    <textarea id="observaciones" rows="4" 
+                        placeholder="Cualquier otro detalle que considere importante para evaluar este proyecto..."></textarea>
+                </div>
+            </div>
+
+            <!-- Campos ocultos para enviar con el formulario (información interna) -->
+            <input type="hidden" id="nombre-solicitante">
+            <input type="hidden" id="apellido-paterno-solicitante">
+            <input type="hidden" id="apellido-materno-solicitante">
+            <input type="hidden" id="cargo">
+            <input type="hidden" id="telefono">
+            <input type="hidden" id="correo">
+
+            <!-- BOTONES -->
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" onclick="window.history.back()">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Enviar Propuesta para Evaluación
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../scripts/Formulario_viabilidad_NS.js"></script>
+
+</body>
+</html>

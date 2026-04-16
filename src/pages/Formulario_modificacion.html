@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGS - Modificación de Sistema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/formularios_estandar.css">
+    <script type="module" src="../../speed-insights.js"></script>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="card">
+        <div class="header">
+            <h2>Solicitud de Modificación o Mejora</h2>
+            <p class="subtitle">Para sistemas existentes en operación</p>
+            <div class="progress-indicator">
+                <span class="badge-info">Esta solicitud será enviada al desarrollador responsable del sistema</span>
+            </div>
+        </div>
+
+        <form id="formModificacion" enctype="multipart/form-data">
+            
+            <!-- SECCIÓN 1: SELECCIÓN DEL SISTEMA -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h3>Identificación del Sistema</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="sistema">Sistema a modificar *</label>
+                    <select id="sistema" required>
+                        <option value="">-- Seleccione el sistema del catálogo --</option>
+                        <option value="pensiones">Sistema de Pensiones</option>
+                        <option value="prestamos">Sistema de Préstamos</option>
+                        <option value="cobranza">Sistema de Cobranza de Prestaciones</option>
+                        <option value="nomina">Sistema de Nómina</option>
+                        <option value="rh">Sistema de Recursos Humanos</option>
+                        <option value="inventarios">Sistema de Inventarios</option>
+                        <option value="activos">Sistema de Control de Activos</option>
+                    </select>
+                    <span class="field-hint">Seleccione el sistema que requiere modificación o mejora</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="modulo">Módulo o sección específica (si se conoce)</label>
+                    <input type="text" id="modulo" 
+                        placeholder="Ej: Módulo de reportes, Pantalla de captura de datos, Menú principal...">
+                    <span class="field-hint">Ayuda al desarrollador a ubicar rápidamente dónde y como intervenir</span>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: TIPO DE SOLICITUD -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h3>Tipo de Solicitud</h3>
+                </div>
+
+                <div class="field-group">
+                    <label>Seleccione el tipo de requerimiento *</label>
+                    <div class="tipo-solicitud-cards">
+                        <label class="tipo-card">
+                            <input type="radio" name="tipo" value="correctiva" required>
+                            <div class="tipo-content">
+                                <div class="tipo-icon">🔧</div>
+                                <strong>Correctiva</strong>
+                                <small>Algo no funciona correctamente</small>
+                            </div>
+                        </label>
+                        <label class="tipo-card">
+                            <input type="radio" name="tipo" value="evolutiva">
+                            <div class="tipo-content">
+                                <div class="tipo-icon">⚡</div>
+                                <strong>Evolutiva</strong>
+                                <small>Agregar nueva funcionalidad</small>
+                            </div>
+                        </label>
+                        <label class="tipo-card">
+                            <input type="radio" name="tipo" value="adaptativa">
+                            <div class="tipo-content">
+                                <div class="tipo-icon">📋</div>
+                                <strong>Adaptativa</strong>
+                                <small>Por cambio normativo o de ley</small>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3A: SOLICITUD CORRECTIVA (Solo visible si tipo = correctiva) -->
+            <div class="section-block" id="seccion-correctiva" style="display: none;">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h3>Detalles de la Falla o Error</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="error-descripcion">¿Qué falla o error está ocurriendo? *</label>
+                    <textarea id="error-descripcion" rows="4" 
+                        placeholder="Describa el error con el mayor detalle posible. Ej: Al intentar guardar el registro aparece un mensaje de error..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="comportamiento-esperado">¿Cómo debería funcionar correctamente? *</label>
+                    <textarea id="comportamiento-esperado" rows="3" 
+                        placeholder="Ej: El sistema debería guardar el registro y mostrar un mensaje de confirmación..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="pasos-reproducir">Pasos para reproducir el error *</label>
+                    <textarea id="pasos-reproducir" rows="5" 
+                        placeholder="Describa PASO A PASO cómo hacer que el error aparezca:&#10;1. Entro al módulo de...&#10;2. Doy clic en el botón...&#10;3. Lleno el campo X con...&#10;4. Presiono 'Guardar'&#10;5. Aparece el mensaje de error..."></textarea>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="cuando-ocurre">¿Desde cuándo ocurre este error?</label>
+                        <select id="cuando-ocurre">
+                            <option value="">Seleccione una opción</option>
+                            <option value="siempre">Siempre ha fallado así</option>
+                            <option value="reciente">Empezó recientemente (últimos días/semanas)</option>
+                            <option value="despues-cambio">Después de un cambio al sistema</option>
+                            <option value="no-se">No estoy seguro</option>
+                        </select>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="frecuencia-error">¿Con qué frecuencia ocurre?</label>
+                        <select id="frecuencia-error">
+                            <option value="">Seleccione una opción</option>
+                            <option value="siempre">Siempre (100% de las veces)</option>
+                            <option value="frecuente">Frecuentemente (más del 50%)</option>
+                            <option value="ocasional">Ocasionalmente (menos del 50%)</option>
+                            <option value="raro">Rara vez</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="afecta-todos">¿Afecta a todos los usuarios o solo a algunos?</label>
+                    <textarea id="afecta-todos" rows="2" 
+                        placeholder="Ej: Solo afecta a usuarios con rol 'Capturista', o afecta a todos los usuarios, o solo pasa en ciertas condiciones..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="mensaje-error">Mensaje de error completo (si aparece alguno)</label>
+                    <input type="text" id="mensaje-error" 
+                        placeholder="Copie exactamente el mensaje de error que aparece en pantalla">
+                </div>
+
+                <div class="field-group">
+                    <label for="evidencias-correctiva">Capturas de pantalla del error *</label>
+                    <div class="upload-area">
+                        <input type="file" id="evidencias-correctiva" multiple accept="image/*,.pdf">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            <p>Arrastra capturas de pantalla del error</p>
+                            <small>Incluya pantallazos del mensaje de error, pantalla donde ocurre, etc.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3B: SOLICITUD EVOLUTIVA (Solo visible si tipo = evolutiva) -->
+            <div class="section-block" id="seccion-evolutiva" style="display: none;">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h3>Detalles de la Nueva Funcionalidad</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="funcionalidad-nueva">¿Qué funcionalidad nueva necesita agregar? *</label>
+                    <textarea id="funcionalidad-nueva" rows="4" 
+                        placeholder="Describa claramente qué quiere que el sistema haga que actualmente no hace. Ej: Necesito que el sistema genere un reporte en Excel de todas las solicitudes del mes..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="justificacion-evolutiva">¿Por qué es necesaria esta nueva funcionalidad? *</label>
+                    <textarea id="justificacion-evolutiva" rows="3" 
+                        placeholder="Ej: Actualmente tenemos que exportar los datos manualmente y armar el reporte en Excel, lo que nos toma 3 horas cada mes. Con esto se automatizaría..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="proceso-actual-evolutiva">¿Cómo lo están haciendo actualmente?</label>
+                    <textarea id="proceso-actual-evolutiva" rows="4" 
+                        placeholder="Describa el proceso manual o alternativa que usan ahora:&#10;1. Descargamos los datos del sistema&#10;2. Los copiamos a Excel&#10;3. Aplicamos fórmulas manualmente..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="proceso-propuesto-evolutiva">¿Cómo debería funcionar después de la modificación? *</label>
+                    <textarea id="proceso-propuesto-evolutiva" rows="4" 
+                        placeholder="Describa paso a paso cómo imagina que funcionaría:&#10;1. El usuario entra a la sección de reportes&#10;2. Selecciona el mes deseado&#10;3. Presiona 'Generar reporte'&#10;4. El sistema descarga automáticamente el Excel con todos los datos..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="ubicacion-funcionalidad">¿Dónde debería estar esta nueva funcionalidad?</label>
+                    <select id="ubicacion-funcionalidad">
+                        <option value="">Seleccione una opción</option>
+                        <option value="pantalla-existente">Agregar a una pantalla existente</option>
+                        <option value="pantalla-nueva">Crear una pantalla/sección nueva</option>
+                        <option value="menu-nuevo">Agregar opción al menú principal</option>
+                        <option value="no-se">No estoy seguro, que lo defina el desarrollador</option>
+                    </select>
+                </div>
+
+                <div class="field-group">
+                    <label for="datos-nuevos-evolutiva">¿Requiere capturar datos nuevos que actualmente no existen?</label>
+                    <textarea id="datos-nuevos-evolutiva" rows="3" 
+                        placeholder="Ej: Sí, necesitamos agregar un campo para 'Motivo del rechazo' que actualmente no existe...&#10;Si no requiere datos nuevos, escriba 'No aplica'"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="reportes-evolutiva">¿Necesita generar nuevos reportes o documentos?</label>
+                    <textarea id="reportes-evolutiva" rows="3" 
+                        placeholder="Describa qué reportes o documentos debe generar, en qué formato (PDF, Excel, etc.) y qué información deben contener..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="bocetos-evolutiva">Bocetos, mockups o ejemplos visuales</label>
+                    <div class="upload-area">
+                        <input type="file" id="bocetos-evolutiva" multiple accept="image/*,.pdf,.doc,.docx">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                            </svg>
+                            <p>Sube bocetos o ejemplos de cómo debería verse</p>
+                            <small>Dibujos a mano, mockups, ejemplos de otros sistemas, formatos deseados, etc.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3C: SOLICITUD ADAPTATIVA (Solo visible si tipo = adaptativa) -->
+            <div class="section-block" id="seccion-adaptativa" style="display: none;">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h3>Detalles del Cambio Normativo</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="normativa-nombre">Nombre de la norma, ley o lineamiento *</label>
+                    <input type="text" id="normativa-nombre" 
+                        placeholder="Ej: Ley General de Transparencia y Acceso a la Información Pública, Lineamiento Técnico 2024-05, etc.">
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="normativa-articulo">Artículo(s) específico(s)</label>
+                        <input type="text" id="normativa-articulo" 
+                            placeholder="Ej: Artículo 25, Fracción III">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="fecha-publicacion">Fecha de publicación/entrada en vigor</label>
+                        <input type="date" id="fecha-publicacion">
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="que-exige">¿Qué exige la norma o ley? *</label>
+                    <textarea id="que-exige" rows="4" 
+                        placeholder="Describa qué requiere la norma. Ej: La ley exige que toda información de ciudadanos debe ser anonimizada en los reportes públicos, mostrando solo las iniciales del nombre..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="cambios-requeridos">¿Qué cambios específicos se deben hacer al sistema? *</label>
+                    <textarea id="cambios-requeridos" rows="5" 
+                        placeholder="Sea muy específico sobre qué debe cambiar:&#10;• En el reporte mensual, cambiar el campo 'Nombre completo' por 'Iniciales'&#10;• Agregar campo de 'Consentimiento informado' en el formulario de registro&#10;• Eliminar la visualización del CURP en la pantalla de consulta..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="fecha-limite">¿Hay fecha límite para implementar el cambio? *</label>
+                    <input type="date" id="fecha-limite">
+                    <span class="field-hint">Fecha en la que DEBE estar funcionando (fecha de cumplimiento obligatorio)</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="validacion-cumplimiento">¿Cómo se validará el cumplimiento de la norma?</label>
+                    <textarea id="validacion-cumplimiento" rows="3" 
+                        placeholder="Ej: La Contraloría revisará que los reportes no muestren nombres completos, Se debe generar evidencia de que se solicitó el consentimiento..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="sancion-incumplimiento">¿Qué consecuencias hay por no cumplir?</label>
+                    <textarea id="sancion-incumplimiento" rows="2" 
+                        placeholder="Ej: Multas económicas, Sanciones administrativas, Observaciones de auditoría..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="documento-normativa">Documento oficial de la norma *</label>
+                    <div class="upload-area">
+                        <input type="file" id="documento-normativa" accept=".pdf,.doc,.docx">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <line x1="10" y1="9" x2="8" y2="9"/>
+                            </svg>
+                            <p>Sube el documento oficial</p>
+                            <small>PDF de la ley, lineamiento, oficio oficial, circular, etc.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="organismo-emisor">Organismo o autoridad que emite la norma</label>
+                    <input type="text" id="organismo-emisor" 
+                        placeholder="Ej: INAI, Contraloría General, Secretaría de la Función Pública...">
+                </div>
+            </div>
+
+            <!-- SECCIÓN 4: IMPACTO Y PRIORIDAD -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h3>Impacto y Urgencia</h3>
+                </div>
+
+                <div class="field-group">
+                    <label>¿Qué tan urgente es este cambio? *</label>
+                    <div class="prioridad-options">
+                        <label class="prioridad-card">
+                            <input type="radio" name="prioridad" value="baja" required>
+                            <div class="prioridad-content">
+                                <strong>Baja</strong>
+                                <small>Puede esperar</small>
+                            </div>
+                        </label>
+                        <label class="prioridad-card">
+                            <input type="radio" name="prioridad" value="media">
+                            <div class="prioridad-content">
+                                <strong>Media</strong>
+                                <small>Deseable pronto</small>
+                            </div>
+                        </label>
+                        <label class="prioridad-card">
+                            <input type="radio" name="prioridad" value="alta">
+                            <div class="prioridad-content">
+                                <strong>Alta</strong>
+                                <small>Necesario</small>
+                            </div>
+                        </label>
+                        <label class="prioridad-card">
+                            <input type="radio" name="prioridad" value="critica">
+                            <div class="prioridad-content">
+                                <strong>Crítica</strong>
+                                <small>Por normativa</small>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="impacto-operacion">¿Cómo afecta esto a su operación diaria?</label>
+                    <textarea id="impacto-operacion" rows="3" 
+                        placeholder="Ej: No podemos generar el reporte mensual que pide Finanzas, Perdemos 2 horas diarias haciendo esto manualmente..."></textarea>
+                </div>
+
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label for="usuarios-afectados">Usuarios afectados (cantidad)</label>
+                        <input type="number" id="usuarios-afectados" min="0" 
+                            placeholder="Número de personas que necesitan esto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 5: OBSERVACIONES ADICIONALES -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h3>Observaciones Adicionales</h3>
+                </div>
+
+                <!-- Campos ocultos para enviar con el formulario (información interna) -->
+                <input type="hidden" id="nombre-solicitante">
+                <input type="hidden" id="apellido-paterno-solicitante">
+                <input type="hidden" id="apellido-materno-solicitante">
+                <input type="hidden" id="area-solicitante">
+                <input type="hidden" id="telefono">
+                <input type="hidden" id="correo">
+
+                <div class="field-group">
+                    <label for="observaciones">Observaciones adicionales</label>
+                    <textarea id="observaciones" rows="3" 
+                        placeholder="Cualquier información adicional que considere relevante..."></textarea>
+                </div>
+
+                <div class="alert-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                    <p>Su solicitud será enviada al Product Manager para validación y posteriormente asignada al desarrollador responsable del sistema.</p>
+                </div>
+            </div>
+
+            <!-- BOTONES -->
+            <div class="form-actions">
+                <button type="button" class="btn-cancel" onclick="window.history.back()">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                    Enviar Solicitud de Modificación
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../scripts/Formulario_modificacion.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+graph TD
+    %% Nivel Administrativo (Sistemas)
+    PM["Product Manager<br/>(Coordinador de Sistemas)"] 
+    
+    %% Equipo Técnico (Sistemas)
+    DEV["Desarrolladores<br/>(Backend, Frontend, Ciberseguridad)"]
+    
+    %% Liderazgo de Áreas Solicitantes
+    JA1["Jefe de Área: Finanzas"]
+    JA2["Jefe de Área: Prestaciones"]
+    JA3["Jefe de Área: Recursos Humanos"]
+    
+    %% Personal Operativo por Área
+    U1A[Usuario Operativo 1]
+    U1B[Usuario Operativo 2]
+    U2A[Usuario Operativo 1]
+    U2B[Usuario Operativo 2]
+    U3A[Usuario Operativo 1]
+    U3B[Usuario Operativo 2]
+
+    %% Conexiones de Jerarquía
+    PM --- DEV
+    PM --- JA1
+    PM --- JA2
+    PM --- JA3
+    
+    JA1 --- U1A
+    JA1 --- U1B
+    JA2 --- U2A
+    JA2 --- U2B
+    JA3 --- U3A
+    JA3 --- U3B
+
+    %% Estilos
+    style PM fill:#004B87,stroke:#333,stroke-width:2px,color:#fff
+    style DEV fill:#C8D8EB,stroke:#004B87,stroke-width:2px
+    style JA1 fill:#f8f9fa,stroke:#ccc
+    style JA2 fill:#f8f9fa,stroke:#ccc
+    style JA3 fill:#f8f9fa,stroke:#ccc

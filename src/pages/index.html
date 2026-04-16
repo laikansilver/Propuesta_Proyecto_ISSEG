@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGSPCSI - Inicio de Sesión | ISSEG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/login.css">
+</head>
+<body>
+    
+    <div class="login-background">
+        <div class="decoration-circle circle-1"></div>
+        <div class="decoration-circle circle-2"></div>
+        <div class="decoration-circle circle-3"></div>
+    </div>
+
+    <div class="login-container">
+        
+        <div class="login-card">
+            
+            <!-- Sección izquierda - Branding -->
+            <div class="login-left">
+                <div class="brand-section">
+                    <img src="../../assets/images/logo_ISSEG.jpeg" alt="ISSEG Logo" class="logo">
+                    <h1>SGSPCSI</h1>
+                    <p class="subtitle">Sistema de Gestión de Solicitudes para la Coordinación de Sistemas Institucionales</p>
+                    <div class="divider"></div>
+                    <p class="institution">Instituto de Seguridad Social del Estado de Guanajuato</p>
+                </div>
+            </div>
+
+            <!-- Sección derecha - Formulario -->
+            <div class="login-right">
+                <div class="login-form-section">
+                    <h2>Iniciar Sesión</h2>
+                    <p class="welcome-text">Ingresa tus credenciales institucionales</p>
+
+                    <form id="loginForm" class="login-form">
+                        <div class="alert-message" id="alertMessage" style="display: none;"></div>
+
+                        <div class="form-group">
+                            <label for="username">Correo Institucional</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <input 
+                                    type="email" 
+                                    id="username" 
+                                    name="username" 
+                                    placeholder="usuario@isseg.gob.mx"
+                                    autocomplete="email"
+                                    pattern="^[a-zA-Z0-9._-]+@isseg\.gob\.mx$"
+                                    title="Debe usar un correo institucional con dominio @isseg.gob.mx"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                </svg>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="Ingresa tu contraseña"
+                                    autocomplete="current-password"
+                                    required
+                                >
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label">Recordarme</span>
+                            </label>
+                            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                        </div>
+
+                        <button type="submit" class="btn-login">
+                            <span class="btn-text">Acceder al Sistema</span>
+                            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                                <polyline points="12 5 19 12 12 19"/>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <div class="login-footer">
+                        <p>© 2026 ISSEG - Gobierno del Estado de Guanajuato</p>
+                        <p class="help-text">Para soporte técnico contacte al área de Sistemas</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../scripts/login.js"></script>
+</body>
+</html>

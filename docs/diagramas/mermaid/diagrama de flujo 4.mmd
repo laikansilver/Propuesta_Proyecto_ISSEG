@@ -1,0 +1,21 @@
+graph TD
+    %% Flujo de resolución de urgencia
+    D1((Conector D)) --> F{¿Se pausa proyecto?}
+    F -- Sí --> G[Notificación de Pausa]
+    F -- No --> H[Asignación Inmediata]
+    G --> I[Resolución de Falla Crítica]
+    H --> I
+    I --> J[Cierre de Folio y Registro de Esfuerzo]
+    J --> K{¿Había proyecto pausado?}
+    K -- Sí --> R
+    K -- No --> Z[Fin del Proceso]
+    
+    %% Flujo de desarrollo normal
+    E1((Conector E)) --> J
+    F1((Conector F)) --> R[Desarrollo y Seguimiento]
+    R --> d[Finalización del desarrollo]
+    d --> W[Cierre de Folio y Registro Final]
+    
+    %% Cierre de modificaciones
+    G1((Conector G)) --> W
+    W --> Z

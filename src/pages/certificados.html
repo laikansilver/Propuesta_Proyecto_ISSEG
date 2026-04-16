@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Certificados - SGSPCSI | ISSEG</title>
+    <link rel="stylesheet" href="../styles/perfil.css">
+    <script type="module" src="../../speed-insights.js"></script>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="btn-back" onclick="goBack()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Regresar
+                </button>
+                <img src="../../assets/images/logo_ISSEG.jpeg" alt="ISSEG" class="header-logo">
+                <div class="header-info">
+                    <h1 class="system-title">SGSPCSI</h1>
+                    <p class="system-subtitle">Mis Certificados</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Usuario</span>
+                        <span class="user-role" id="userRole">Solicitante</span>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            
+            <!-- Page Title -->
+            <section class="page-header">
+                <div class="page-icon success">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <path d="M9 15l2 2 4-4"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2>Mis Certificados y Credenciales</h2>
+                    <p class="page-description">Gestiona tus certificaciones, capacitaciones y credenciales</p>
+                </div>
+            </section>
+
+            <!-- Stats Overview -->
+            <div class="stats-mini-grid">
+                <div class="stat-mini-card">
+                    <div class="stat-mini-value">5</div>
+                    <div class="stat-mini-label">Certificados Activos</div>
+                </div>
+                <div class="stat-mini-card">
+                    <div class="stat-mini-value">2</div>
+                    <div class="stat-mini-label">Por Vencer</div>
+                </div>
+                <div class="stat-mini-card">
+                    <div class="stat-mini-value">8</div>
+                    <div class="stat-mini-label">Total Obtenidos</div>
+                </div>
+            </div>
+
+            <!-- Certificates List -->
+            <section class="certificates-section">
+                <div class="section-header">
+                    <h3>Certificados Activos</h3>
+                    <button class="btn btn-primary-outline" onclick="addCertificate()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Agregar Certificado
+                    </button>
+                </div>
+
+                <!-- Certificate Cards -->
+                <div class="certificates-grid">
+                    
+                    <!-- Certificate 1 -->
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <div class="certificate-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
+                            <span class="certificate-badge active">Vigente</span>
+                        </div>
+                        <h4 class="certificate-title">Seguridad Informática</h4>
+                        <p class="certificate-issuer">ISSEG - Instituto de Seguridad Social del Estado de Guanajuato</p>
+                        <div class="certificate-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>Emitido: 15 Ene 2024</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>Vence: 15 Ene 2026</span>
+                            </div>
+                        </div>
+                        <div class="certificate-actions">
+                            <button class="btn-icon" title="Ver">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Descargar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Compartir">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 2 -->
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <div class="certificate-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
+                            <span class="certificate-badge warning">Por Vencer</span>
+                        </div>
+                        <h4 class="certificate-title">Protección de Datos Personales</h4>
+                        <p class="certificate-issuer">INAI - Instituto Nacional de Transparencia</p>
+                        <div class="certificate-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>Emitido: 20 Mar 2023</span>
+                            </div>
+                            <div class="detail-item warning-text">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                                <span>Vence: 20 Abr 2025</span>
+                            </div>
+                        </div>
+                        <div class="certificate-actions">
+                            <button class="btn-icon" title="Ver">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Descargar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Renovar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 4 23 10 17 10"></polyline>
+                                    <polyline points="1 20 1 14 7 14"></polyline>
+                                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 3 -->
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <div class="certificate-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
+                            <span class="certificate-badge active">Vigente</span>
+                        </div>
+                        <h4 class="certificate-title">Microsoft Azure Fundamentals</h4>
+                        <p class="certificate-issuer">Microsoft Corporation</p>
+                        <div class="certificate-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>Emitido: 10 Oct 2024</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="badge-permanent">Sin vencimiento</span>
+                            </div>
+                        </div>
+                        <div class="certificate-actions">
+                            <button class="btn-icon" title="Ver">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Descargar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Verificar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 4 -->
+                    <div class="certificate-card">
+                        <div class="certificate-header">
+                            <div class="certificate-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
+                            <span class="certificate-badge active">Vigente</span>
+                        </div>
+                        <h4 class="certificate-title">Gestión de Proyectos TI</h4>
+                        <p class="certificate-issuer">Project Management Institute (PMI)</p>
+                        <div class="certificate-details">
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>Emitido: 05 Jun 2024</span>
+                            </div>
+                            <div class="detail-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <span>Vence: 05 Jun 2027</span>
+                            </div>
+                        </div>
+                        <div class="certificate-actions">
+                            <button class="btn-icon" title="Ver">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                            <button class="btn-icon" title="Descargar">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+</button>
+                            <button class="btn-icon" title="Compartir">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Training History -->
+            <section class="training-section">
+                <h3>Historial de Capacitaciones</h3>
+                <div class="training-list">
+                    <div class="training-item">
+                        <div class="training-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                        <div class="training-info">
+                            <h4>Introducción a DevOps</h4>
+                            <p>Duración: 40 horas • Completado: Dic 2024</p>
+                        </div>
+                        <span class="training-status completed">Completado</span>
+                    </div>
+                    <div class="training-item">
+                        <div class="training-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                        <div class="training-info">
+                            <h4>Ciberseguridad Básica</h4>
+                            <p>Duración: 30 horas • Completado: Nov 2024</p>
+                        </div>
+                        <span class="training-status completed">Completado</span>
+                    </div>
+                    <div class="training-item">
+                        <div class="training-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                        <div class="training-info">
+                            <h4>Metodologías Ágiles</h4>
+                            <p>Duración: 20 horas • En progreso: 75%</p>
+                        </div>
+                        <span class="training-status in-progress">En Progreso</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="../scripts/perfil.js"></script>
+    <script>
+        // Conectar eventos de certificados
+        document.addEventListener('DOMContentLoaded', function() {
+            // Conectar botones de acciones de certificados
+            const certificateCards = document.querySelectorAll('.certificate-card');
+            
+            certificateCards.forEach(card => {
+                const certTitle = card.querySelector('.certificate-title').textContent;
+                const buttons = card.querySelectorAll('.btn-icon');
+                
+                buttons.forEach(button => {
+                    const title = button.getAttribute('title');
+                    
+                    button.addEventListener('click', function() {
+                        if (title === 'Ver') {
+                            viewCertificate(certTitle);
+                        } else if (title === 'Descargar') {
+                            downloadCertificate(certTitle);
+                        } else if (title === 'Compartir') {
+                            shareCertificate(certTitle);
+                        } else if (title === 'Verificar') {
+                            verifyCertificate(certTitle);
+                        } else if (title === 'Renovar') {
+                            renewCertificate(certTitle);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

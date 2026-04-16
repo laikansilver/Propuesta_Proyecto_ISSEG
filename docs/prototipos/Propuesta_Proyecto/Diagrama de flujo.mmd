@@ -1,0 +1,43 @@
+graph TD
+    A[Inicio: Usuario genera Solicitud] --> B{¿Es Urgente?}
+    
+    %% Flujo de Urgencia
+    B -- Sí --> C["Formulario Simplificado:<br/>Captura de pantalla + Descripción"]
+    C --> D[Notificación Inmediata al Product Manager]
+    D --> E[Evaluación de Impacto Prioritaria]
+    E --> F{¿Se pausa proyecto actual?}
+    F -- Sí --> G[Notificación de Pausa a Proyecto Activo]
+    F -- No --> H[Asignación Inmediata de Desarrollador]
+    G --> I[Resolución de Falla Crítica]
+    H --> I
+    I --> J[Cierre de Folio y Registro de Esfuerzo]
+    J --> K{¿Había proyecto pausado?}
+    K -- Sí --> R
+    K -- No --> Z[Fin del Proceso]
+    
+    %% Flujo Normal
+    B -- No --> L{Tipo de Petición}
+    L -- Nuevo Sistema --> M[Formulario 1: Viabilidad técnica]
+    L -- Mejora/Modificación --> N["Selección de Sistema Existente<br/>+ Formulario de Falla"]
+    
+    %% Rama Nuevo Sistema
+    M --> O{Validación Product Manager}
+    O -- rechazado --> P[Notificación motivo de rechazo]
+    P --> J
+    O -- aceptado --> Q[Asignación de desarrollador]
+    Q --> S[Formulario 2: Requerimientos Detallados] 
+    S --> U{¿Surgió una urgencia?}
+    U -- Sí --> F
+    U -- No --> R[Desarrollo y Seguimiento]
+    R --> d[Finalización del desarrollo]
+    d --> W[Cierre de Folio y Registro Final de Esfuerzo]
+    
+    %% Rama Modificación
+    N --> X{Validación Product Manager}
+    X -- rechazado --> a[Notificación de motivo de rechazo]
+    a --> W
+    X -- aceptado --> Y[Notificación al desarrollador responsable]
+    Y --> b[Resolución y desarrollo de la modificación]
+    b --> W
+    
+    W --> Z

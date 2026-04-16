@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGS - Especificación Técnica Integral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/formularios_estandar.css">
+    
+    <!-- Verificación de acceso -->
+    <script>
+        // Verificar acceso antes de cargar el formulario
+        (function() {
+            const isPreviewMode = new URLSearchParams(window.location.search).get('preview') === '1';
+            if (isPreviewMode) {
+                return;
+            }
+
+            const hasApproval = localStorage.getItem('sistema_nuevo_aprobado') === 'true';
+            
+            if (!hasApproval) {
+                alert('⚠️ Acceso Denegado\n\nEste formulario solo está disponible después de que tu solicitud de Sistema Nuevo sea aprobada.\n\nSerás redirigido a la página principal.');
+                window.location.href = 'home_cliente.html';
+            }
+        })();
+    </script>
+    <script type="module" src="speed-insights.js"></script>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="card">
+        <div class="header">
+            <h2>Formulario de Requerimientos Técnicos</h2>
+            <p class="subtitle">Este documento servirá como base contractual para el desarrollo del sistema</p>
+            <div class="progress-indicator">
+                <span class="badge-required">Todos los campos marcados con * son obligatorios</span>
+            </div>
+        </div>
+
+        <form id="formRequerimientos" enctype="multipart/form-data">
+            
+            <!-- SECCIÓN 1: CONTEXTO Y MARCO TEÓRICO -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h3>Contexto del área y Marco Teórico</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="contexto">Descripción del contexto actual del área solicitante *</label>
+                    <textarea id="contexto" rows="4" required 
+                        placeholder="Explique cómo funciona actualmente el área, qué herramientas utilizan, cuál es el flujo de trabajo diario..."></textarea>
+                    <span class="field-hint">Esto ayuda al desarrollador a entender el "por qué" del sistema</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="problematica">Problemática específica a resolver *</label>
+                    <textarea id="problematica" rows="4" required 
+                        placeholder="¿Qué falla específicamente? ¿Dónde se pierde tiempo? ¿Qué errores ocurren frecuentemente?"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="normativa">Normativas, leyes o lineamientos institucionales aplicables</label>
+                    <textarea id="normativa" rows="3" 
+                        placeholder="Ej: Ley de Transparencia, Manual de Procedimientos de Cobranza, Lineamiento Técnico XYZ..."></textarea>
+                    <span class="field-hint">Si el sistema debe cumplir con alguna regulación, menciónela aquí</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="documentos-contexto">Documentación de Soporte (Opcional pero recomendado)</label>
+                    <div class="upload-area">
+                        <input type="file" id="documentos-contexto" multiple accept=".pdf,.doc,.docx,.jpg,.png">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                            </svg>
+                            <p>Arrastra aquí los archivos o haz clic para seleccionar</p>
+                            <small>Manuales de procedimientos, organigramas, diagramas actuales, normativas, etc.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 2: ALCANCES Y DELIMITACIONES -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h3>Alcances y Delimitaciones del Sistema</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="objetivo-sistema">Objetivo principal del sistema *</label>
+                    <textarea id="objetivo-sistema" rows="3" required 
+                        placeholder="En una frase clara: ¿Qué debe lograr este sistema?"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="incluye">¿Qué SÍ debe hacer el sistema? (Alcances) *</label>
+                    <textarea id="incluye" rows="5" required 
+                        placeholder="Liste punto por punto las funcionalidades que el sistema DEBE tener. Sea específico.&#10;Ejemplo:&#10;• Registrar solicitudes de préstamo&#10;• Validar automáticamente el RFC contra base de datos del SAT&#10;• Generar folio único automático"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="excluye">¿Qué NO debe hacer el sistema? (Exclusiones) *</label>
+                    <textarea id="excluye" rows="4" required 
+                        placeholder="Liste lo que definitivamente quedará FUERA del proyecto. Esto evita malentendidos.&#10;Ejemplo:&#10;• NO manejará pagos en efectivo&#10;• NO generará recibos fiscales (eso lo hace otro sistema)"></textarea>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 3: PROCESOS Y FLUJOS DE TRABAJO -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h3>Procesos y Flujos de Trabajo</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="proceso-actual">Descripción paso a paso del proceso ACTUAL *</label>
+                    <textarea id="proceso-actual" rows="6" required 
+                        placeholder="Describa con detalle cómo se hace el trabajo HOY (el proceso que se va a reemplazar):&#10;1. El usuario llena un formato en Word&#10;2. Lo imprime y lo firma&#10;3. Lo lleva a la oficina del jefe&#10;4. El jefe lo revisa manualmente..."></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="diagrama-actual">Diagrama del proceso actual (Si existe)</label>
+                    <div class="upload-area">
+                        <input type="file" id="diagrama-actual" accept=".pdf,.png,.jpg,.vsdx,.drawio">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                            <p>Diagrama de flujo o mapa del proceso actual</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="proceso-propuesto">Descripción paso a paso del proceso PROPUESTO (Con el nuevo sistema) *</label>
+                    <textarea id="proceso-propuesto" rows="6" required 
+                        placeholder="Describa cómo DEBERÍA funcionar con el nuevo sistema:&#10;1. El usuario entra al sistema con su usuario y contraseña&#10;2. Llena el formulario en pantalla&#10;3. El sistema valida automáticamente los datos&#10;4. Se envía notificación automática al jefe..."></textarea>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 4: DATOS Y ENTIDADES -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h3>Información y Datos del Sistema</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="datos-entrada">Datos de ENTRADA (Información que el usuario capturará) *</label>
+                    <textarea id="datos-entrada" rows="6" required 
+                        placeholder="Liste TODOS los datos que se van a capturar. Sea muy específico sobre el tipo:&#10;• RFC (13 caracteres, alfanumérico, obligatorio)&#10;• Nombre(s) (Texto, obligatorio)&#10;• Apellido Paterno (Texto, obligatorio)&#10;• Apellido Materno (Texto, obligatorio)&#10;• Fecha de nacimiento (Fecha, obligatorio, formato dd/mm/aaaa)&#10;• Monto solicitado (Numérico, 2 decimales, obligatorio, rango: $1,000 - $100,000)"></textarea>
+                    <span class="field-hint">Especifique: tipo de dato, longitud, si es obligatorio u opcional, rangos permitidos</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="calculos">Cálculos, fórmulas y reglas de área *</label>
+                    <textarea id="calculos" rows="6" required 
+                        placeholder="Describa TODAS las reglas, validaciones y cálculos que debe realizar el sistema:&#10;• Si el usuario tiene más de 60 años, aplicar descuento del 10%&#10;• El RFC debe validarse contra el algoritmo oficial del SAT&#10;• No permitir fechas futuras en el campo 'Fecha de nacimiento'&#10;• El monto total = monto base + (monto base * 0.16 de IVA)"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="formato-folio">Formato de folios o identificadores</label>
+                    <input type="text" id="formato-folio" 
+                        placeholder="Ej: PREST-2024-00001 (Prefijo + Año + Consecutivo de 5 dígitos)">
+                </div>
+
+                <div class="field-group">
+                    <label for="datos-salida">Datos de SALIDA (Reportes, documentos, gráficas) *</label>
+                    <textarea id="datos-salida" rows="5" required 
+                        placeholder="¿Qué reportes, listas, gráficas o documentos debe generar el sistema?&#10;• Reporte mensual de solicitudes (PDF, con logo institucional)&#10;• Listado de pagos pendientes (Excel exportable)&#10;• Gráfica de barras: Solicitudes por mes&#10;• Comprobante de solicitud (PDF descargable por el usuario)"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="ejemplo-reportes">Ejemplos de reportes actuales (Si existen)</label>
+                    <div class="upload-area">
+                        <input type="file" id="ejemplo-reportes" multiple accept=".pdf,.xlsx,.jpg,.png">
+                        <div class="upload-label">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="9" y1="9" x2="15" y2="15"/>
+                                <line x1="9" y1="15" x2="15" y2="9"/>
+                            </svg>
+                            <p>Sube ejemplos de los reportes/formatos actuales</p>
+                            <small>Esto ayuda al desarrollador a entender el formato esperado</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="archivos-adjuntos">Especificaciones de archivos adjuntos en el sistema</label>
+                    <textarea id="archivos-adjuntos" rows="5" 
+                        placeholder="Si el sistema permitirá que los usuarios suban archivos, especifique:&#10;• Tipos de archivo permitidos (PDF, Excel, Word, imágenes, etc.)&#10;• Tamaño máximo por archivo (Ej: 5 MB)&#10;• Cantidad máxima de archivos por registro (Ej: máximo 3 archivos)&#10;• ¿Se pueden eliminar o reemplazar archivos después de subirlos?&#10;• ¿Los archivos deben tener nomenclatura específica?"></textarea>
+                    <span class="field-hint">Si no aplica, dejarlo en blanco</span>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 5: ROLES Y PERMISOS -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h3>Usuarios, Roles y Permisos</h3>
+                </div>
+
+                <div class="field-group">
+                    <label>Tabla de Roles *</label>
+                    <p class="field-hint">Define los roles del sistema, sus permisos y la cantidad estimada de usuarios por rol</p>
+                    
+                    <div class="table-container">
+                        <table class="roles-table" id="roles-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">Rol</th>
+                                    <th style="width: 30%;">Descripción</th>
+                                    <th style="width: 35%;">Permisos Generales</th>
+                                    <th style="width: 10%;">Cant. Usuarios</th>
+                                    <th style="width: 5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="roles-tbody">
+                                <tr class="role-row">
+                                    <td><input type="text" class="table-input" placeholder="Ej: Administrador" required></td>
+                                    <td><input type="text" class="table-input" placeholder="Descripción del rol"></td>
+                                    <td><input type="text" class="table-input" placeholder="CRUD, config, etc"></td>
+                                    <td><input type="number" class="table-input" placeholder="2-3" min="1"></td>
+                                    <td><button type="button" class="btn-remove-row" onclick="removeRoleRow(this)" title="Eliminar">×</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn-add-row" id="btn-agregar-rol" onclick="agregarRol()">+ Agregar Rol</button>
+                </div>
+
+                <div class="field-group">
+                    <label>Usuarios del Sistema</label>
+                    <p class="field-hint">Registra a las personas que utilizarán el sistema, su puesto organizacional y el rol asignado</p>
+                    
+                    <div class="table-container">
+                        <table class="usuarios-table" id="usuarios-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20%;">Nombre(s)</th>
+                                    <th style="width: 17%;">Apellido Paterno</th>
+                                    <th style="width: 17%;">Apellido Materno</th>
+                                    <th style="width: 18%;">Cargo/Puesto</th>
+                                    <th style="width: 23%;">Rol Asignado</th>
+                                    <th style="width: 5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="usuarios-tbody">
+                                <tr class="usuario-row">
+                                    <td><input type="text" class="table-input" placeholder="Nombre(s)"></td>
+                                    <td><input type="text" class="table-input" placeholder="Apellido Paterno"></td>
+                                    <td><input type="text" class="table-input" placeholder="Apellido Materno"></td>
+                                    <td><input type="text" class="table-input" placeholder="Ej: Jefe de Área"></td>
+                                    <td>
+                                        <select class="table-input rol-select">
+                                            <option value="">Seleccione rol</option>
+                                        </select>
+                                    </td>
+                                    <td><button type="button" class="btn-remove-row" onclick="removeUsuarioRow(this)" title="Eliminar">×</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn-add-row" id="btn-agregar-usuario" onclick="agregarUsuario()">+ Agregar Usuario</button>
+                </div>
+
+                <div class="field-group">
+                    <label for="usuarios-simultaneos">¿Cuántos usuarios trabajarán AL MISMO TIEMPO en el sistema?</label>
+                    <input type="text" id="usuarios-simultaneos" 
+                        placeholder="Ej: Máximo 20 personas conectadas simultáneamente en horas pico (9am-11am)">
+                </div>
+            </div>
+
+            <!-- SECCIÓN 6: INTEGRACIÓN Y TECNOLOGÍA -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">06</span>
+                    <h3>Integraciones y Requerimientos Técnicos</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="sistemas-integrar">¿El sistema debe conectarse con otros sistemas existentes?</label>
+                    <textarea id="sistemas-integrar" rows="4" 
+                        placeholder="Ej:&#10;• Debe consultar la base de datos de Nómina para validar que el empleado esté activo&#10;• Debe enviar notificaciones por correo usando el servidor de Outlook institucional&#10;• Debe consultar el sistema de Cobranza para ver el historial de pagos"></textarea>
+                </div>
+                <div class="field-group">
+                    <label for="horario">Horario de operación del sistema</label>
+                    <select id="horario">
+                        <option value="">Seleccione una opción</option>
+                        <option value="laboral">Solo horario laboral (Lunes a Viernes 8am-6pm)</option>
+                        <option value="247">24/7 (Todo el tiempo disponible)</option>
+                        <option value="extendido">Horario extendido (Incluye sábados)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 7: SEGURIDAD Y RESPALDOS -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">07</span>
+                    <h3>Seguridad y Protección de Datos</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="datos-sensibles">¿El sistema manejará datos personales sensibles? *</label>
+                    <select id="datos-sensibles" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="si">Sí (RFC, CURP, números de cuenta, datos médicos, etc.)</option>
+                        <option value="no">No, solo información general</option>
+                    </select>
+                    <span class="field-hint">Esto determina el nivel de seguridad requerido</span>
+                </div>
+
+                <div class="field-group">
+                    <label for="bitacora-acciones">¿Se requiere llevar un registro de quién hace qué en el sistema?</label>
+                    <select id="bitacora-acciones">
+                        <option value="">Seleccione una opción</option>
+                        <option value="completo">Sí, bitácora completa (quién, cuándo, qué hizo)</option>
+                        <option value="basico">Solo registros básicos (creación y modificación)</option>
+                        <option value="no">No es necesario</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 8: CRITERIOS DE ACEPTACIÓN -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">08</span>
+                    <h3>Criterios de Aceptación y Entrega</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="criterios">¿Cómo sabremos que el sistema funciona correctamente? *</label>
+                    <textarea id="criterios" rows="6" required 
+                        placeholder="Defina los criterios de aceptación. El sistema será aprobado cuando:&#10;• Se puedan crear al menos 100 solicitudes sin errores&#10;• Todos los reportes se generen correctamente con los datos de prueba&#10;• Los 5 roles de usuario funcionen según lo especificado&#10;• Todas las validaciones de datos funcionen correctamente"></textarea>
+                </div>
+
+                <div class="field-group">
+                    <label for="capacitacion">¿Se requiere capacitación para los usuarios?</label>
+                    <select id="capacitacion">
+                        <option value="">Seleccione una opción</option>
+                        <option value="si-presencial">Sí, capacitación presencial</option>
+                        <option value="si-manual">Sí, solo manual de usuario</option>
+                        <option value="no">No, el sistema debe ser autoexplicativo</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 9: ESTADOS Y TRANSICIONES DEL SISTEMA -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">09</span>
+                    <h3>Estados y Transiciones del Sistema</h3>
+                </div>
+
+                <div class="field-group">
+                    <label>Tabla de Estados (Workflow) *</label>
+                    <p class="field-hint">Define todos los estados posibles que puede tener un registro y quién puede moverlo de un estado a otro</p>
+                    
+                    <div class="table-container">
+                        <table class="estados-table" id="estados-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Estado</th>
+                                    <th style="width: 30%;">Descripción</th>
+                                    <th style="width: 20%;">Siguiente Estado Posible</th>
+                                    <th style="width: 20%;">Quién puede hacer el cambio</th>
+                                    <th style="width: 10%;">¿Editable?</th>
+                                    <th style="width: 5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="estados-tbody">
+                                <tr class="estado-row">
+                                    <td><input type="text" class="table-input" placeholder="Ej: Borrador" required></td>
+                                    <td><input type="text" class="table-input" placeholder="Solicitud en construcción"></td>
+                                    <td><input type="text" class="table-input" placeholder="Enviado"></td>
+                                    <td><input type="text" class="table-input" placeholder="Usuario solicitante"></td>
+                                    <td>
+                                        <select class="table-input">
+                                            <option value="si">Sí</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </td>
+                                    <td><button type="button" class="btn-remove-row" onclick="removeEstadoRow(this)" title="Eliminar">×</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn-add-row" id="btn-agregar-estado" onclick="agregarEstado()">+ Agregar Estado</button>
+                </div>
+
+                <div class="field-group">
+                    <label for="casos-excepcion">Casos especiales o excepciones en el flujo</label>
+                    <textarea id="casos-excepcion" rows="4" 
+                        placeholder="Ej:&#10;• Si una solicitud es rechazada, puede volver a estado 'Borrador' para correcciones&#10;• Solo el Director puede cancelar una solicitud ya aprobada&#10;• Las solicitudes mayores a $50,000 requieren aprobación doble (Jefe + Director)"></textarea>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 10: NOTIFICACIONES Y ALERTAS AUTOMÁTICAS -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">10</span>
+                    <h3>Notificaciones y Alertas Automáticas</h3>
+                </div>
+
+                <div class="field-group">
+                    <label>Tabla de Notificaciones *</label>
+                    <p class="field-hint">Define qué eventos generan notificaciones automáticas, a quién y por qué medio</p>
+                    
+                    <div class="table-container">
+                        <table class="notificaciones-table" id="notificaciones-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 25%;">Evento que dispara</th>
+                                    <th style="width: 20%;">Destinatario(s)</th>
+                                    <th style="width: 15%;">Medio</th>
+                                    <th style="width: 35%;">Contenido del mensaje</th>
+                                    <th style="width: 5%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="notificaciones-tbody">
+                                <tr class="notificacion-row">
+                                    <td><input type="text" class="table-input" placeholder="Ej: Nueva solicitud creada"></td>
+                                    <td><input type="text" class="table-input" placeholder="Jefe de Área"></td>
+                                    <td>
+                                        <select class="table-input">
+                                            <option value="">Seleccionar</option>
+                                            <option value="correo">Correo electrónico</option>
+                                            <option value="sistema">Notificación en sistema</option>
+                                            <option value="ambos">Ambos</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="table-input" placeholder="Tienes una nueva solicitud pendiente de revisar"></td>
+                                    <td><button type="button" class="btn-remove-row" onclick="removeNotificacionRow(this)" title="Eliminar">×</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn-add-row" id="btn-agregar-notificacion" onclick="agregarNotificacion()">+ Agregar Notificación</button>
+                </div>
+
+                <div class="field-group">
+                    <label for="configuracion-emails">Configuración adicional de correos electrónicos</label>
+                    <textarea id="configuracion-emails" rows="3" 
+                        placeholder="Ej:&#10;• Todos los correos deben incluir el logo institucional en el encabezado&#10;• Copiar siempre a sistemas@institucion.gob.mx&#10;• Usar la plantilla oficial de la institución"></textarea>
+                </div>
+            </div>
+
+            <!-- SECCIÓN 11: INFORMACIÓN ADICIONAL -->
+            <div class="section-block">
+                <div class="section-header">
+                    <span class="section-number">11</span>
+                    <h3>Información Adicional</h3>
+                </div>
+
+                <div class="field-group">
+                    <label for="observaciones">Observaciones generales o información adicional relevante</label>
+                    <textarea id="observaciones" rows="5" 
+                        placeholder="Cualquier información adicional que considere importante para el desarrollo del sistema..."></textarea>
+                </div>
+
+                <!-- Campos ocultos para enviar con el formulario (información interna) -->
+                <input type="hidden" id="nombre-solicitante">
+                <input type="hidden" id="apellido-paterno-solicitante">
+                <input type="hidden" id="apellido-materno-solicitante">
+                <input type="hidden" id="area-solicitante">
+            </div>
+
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="form-actions">
+                <button type="button" class="btn-draft" onclick="guardarBorrador()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+                        <polyline points="17 21 17 13 7 13 7 21"/>
+                        <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Guardar Borrador
+                </button>
+                <button type="button" class="btn-preview" onclick="previsualizarFormulario()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    Previsualizar
+                </button>
+                <button type="submit" class="btn-submit">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                    Enviar a Desarrollo
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../scripts/Formulario_Requerimientos.js"></script>
+
+</body>
+</html>

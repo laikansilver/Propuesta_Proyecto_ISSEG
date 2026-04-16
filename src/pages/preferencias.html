@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferencias - SGSPCSI | ISSEG</title>
+    <link rel="stylesheet" href="../styles/perfil.css">
+    <script type="module" src="../../speed-insights.js"></script>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-left">
+                <button class="btn-back" onclick="goBack()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Regresar
+                </button>
+                <img src="../../assets/images/logo_ISSEG.jpeg" alt="ISSEG" class="header-logo">
+                <div class="header-info">
+                    <h1 class="system-title">SGSPCSI</h1>
+                    <p class="system-subtitle">Preferencias</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <div class="user-details">
+                        <span class="user-name" id="userName">Usuario</span>
+                        <span class="user-role" id="userRole">Solicitante</span>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                    Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            
+            <!-- Page Title -->
+            <section class="page-header">
+                <div class="page-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2>Preferencias de Usuario</h2>
+                    <p class="page-description">Personaliza tu experiencia en el sistema</p>
+                </div>
+            </section>
+
+            <!-- Preference Sections -->
+            <div class="config-sections">
+                
+                <!-- Workflow Preferences -->
+                <section class="config-card">
+                    <div class="config-header">
+                        <div class="config-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Flujo de Trabajo</h3>
+                            <p class="config-description">Configura tu forma de trabajar preferida</p>
+                        </div>
+                    </div>
+                    <div class="config-options">
+                        <div class="form-group">
+                            <label for="defaultView">Vista predeterminada al iniciar</label>
+                            <select id="defaultView" class="form-select">
+                                <option value="dashboard" selected>Panel Principal</option>
+                                <option value="requests">Mis Solicitudes</option>
+                                <option value="new">Nueva Solicitud</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemsPerPage">Elementos por página</label>
+                            <select id="itemsPerPage" class="form-select">
+                                <option value="10">10</option>
+                                <option value="25" selected>25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Confirmación antes de enviar</span>
+                                <span class="option-subtitle">Mostrar diálogo de confirmación al enviar solicitudes</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="confirmSubmit" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Autoguardado de borradores</span>
+                                <span class="option-subtitle">Guardar automáticamente formularios en progreso</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="autosave" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Email Preferences -->
+                <section class="config-card">
+                    <div class="config-header">
+                        <div class="config-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Correo Electrónico</h3>
+                            <p class="config-description">Gestiona las notificaciones por email</p>
+                        </div>
+                    </div>
+                    <div class="config-options">
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Actualización de estado</span>
+                                <span class="option-subtitle">Cuando cambia el estado de tus solicitudes</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailStatus" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Comentarios nuevos</span>
+                                <span class="option-subtitle">Cuando alguien comenta en tus solicitudes</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailComments" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Asignación de tareas</span>
+                                <span class="option-subtitle">Cuando te asignan una nueva tarea</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailAssignment" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Recordatorios de seguimiento</span>
+                                <span class="option-subtitle">Recordatorios de solicitudes pendientes</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailReminders">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Boletín mensual</span>
+                                <span class="option-subtitle">Resumen mensual de novedades y estadísticas</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="emailNewsletter">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dashboard Preferences -->
+                <section class="config-card">
+                    <div class="config-header">
+                        <div class="config-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Panel de Control</h3>
+                            <p class="config-description">Personaliza tu dashboard</p>
+                        </div>
+                    </div>
+                    <div class="config-options">
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Mostrar estadísticas</span>
+                                <span class="option-subtitle">Tarjetas con resumen de tus solicitudes</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showStats" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Mostrar solicitudes recientes</span>
+                                <span class="option-subtitle">Lista de tus últimas solicitudes enviadas</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showRecent" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Mostrar asistente de decisión</span>
+                                <span class="option-subtitle">Herramienta para elegir tipo de solicitud</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showAssistant" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Mostrar consejos</span>
+                                <span class="option-subtitle">Tarjetas con consejos útiles</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showTips" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Data & Storage -->
+                <section class="config-card">
+                    <div class="config-header">
+                        <div class="config-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Datos y Almacenamiento</h3>
+                            <p class="config-description">Gestiona tus datos locales</p>
+                        </div>
+                    </div>
+                    <div class="config-options">
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Recordar formularios</span>
+                                <span class="option-subtitle">Guardar borradores en tu navegador</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="rememberForms" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <div class="option-info">
+                                <span class="option-label">Recordar sesión</span>
+                                <span class="option-subtitle">Mantener sesión iniciada por 30 días</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="rememberSession">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <button type="button" class="btn btn-outline-danger" onclick="clearCache()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                </svg>
+                                Limpiar caché y datos locales
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button type="button" class="btn btn-secondary" onclick="goBack()">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="savePreferences">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    Guardar Preferencias
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../scripts/perfil.js"></script>
+    <script>
+        // Conectar eventos de preferencias
+        document.addEventListener('DOMContentLoaded', function() {
+            const saveBtn = document.getElementById('savePreferences');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', savePreferences);
+            }
+        });
+    </script>
+</body>
+</html>
