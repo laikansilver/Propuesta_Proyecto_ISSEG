@@ -197,15 +197,15 @@ GO
 CREATE TABLE dbo.solicitud_desarrollador (
     solicitud_desarrollador_id BIGINT IDENTITY(1,1) PRIMARY KEY,
     solicitud_id         BIGINT NOT NULL,
-    usuario_id           INT NOT NULL,
+    desarrollador_id     INT NOT NULL,
     tipo_participacion   VARCHAR(20) NOT NULL,
     activo               BIT NOT NULL CONSTRAINT DF_solicitud_desarrollador_activo DEFAULT (1),
     fecha_asignacion     DATETIME2 NOT NULL CONSTRAINT DF_solicitud_desarrollador_fecha_asignacion DEFAULT (SYSDATETIME()),
     fecha_fin            DATETIME2 NULL,
     CONSTRAINT FK_solicitud_desarrollador_solicitud FOREIGN KEY (solicitud_id) REFERENCES dbo.solicitud(solicitud_id),
-    CONSTRAINT FK_solicitud_desarrollador_usuario FOREIGN KEY (usuario_id) REFERENCES dbo.usuario(usuario_id),
+    CONSTRAINT FK_solicitud_desarrollador_desarrollador FOREIGN KEY (desarrollador_id) REFERENCES dbo.desarrollador(desarrollador_id),
     CONSTRAINT CK_solicitud_desarrollador_tipo CHECK (tipo_participacion IN ('RESPONSABLE','PARTICIPANTE')),
-    CONSTRAINT UQ_solicitud_desarrollador UNIQUE (solicitud_id, usuario_id)
+    CONSTRAINT UQ_solicitud_desarrollador UNIQUE (solicitud_id, desarrollador_id)
 );
 GO
 
